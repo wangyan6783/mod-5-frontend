@@ -9,13 +9,24 @@ class EventList extends Component {
   componentDidMount(){
     fetch("http://localhost:3001/api/v1/events")
     .then(response => response.json())
-    .then(events => this.props.handleFetch(events))
+    .then(events => this.props.dispatch(addEvents(events)))
+  }
+
+  renderEvents(){
+    const filteredEvents = this.props.events.filter(event => event.title.toLowerCase().includes(this.props.searchTerm.toLowerCase()))
+
+    if (this.props.sortType === "Event Date") {
+      return filteredEvents.sort((a, b) => {
+        return new Date(a.start_time) - new Date(b.start_time)
+      })
+    }
+    return filteredEvents
   }
 
   render(){
     return (
       <Card.Group itemsPerRow={3}>
-        {this.props.events.map(event => <Event key={event.id} event={event} />)}
+        {this.renderEvents().map(event => <Event key={event.id} event={event} />)}
       </Card.Group>
     )
   }
@@ -23,14 +34,10 @@ class EventList extends Component {
 
 const mapStateToProps = state => {
   return {
-    events: state.eventReducer.events
+    events: state.eventReducer.events,
+    searchTerm: state.eventReducer.searchTerm,
+    sortType: state.eventReducer.sortType
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    handleFetch: (events) => dispatch(addEvents(events))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(EventList)
+export default connect(mapStateToProps)(EventList)

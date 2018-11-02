@@ -2,16 +2,22 @@ import React from 'react';
 import { Button, Card, Image, Icon } from 'semantic-ui-react';
 
 
-const Event = () => {
+const Event = (props) => {
+  // console.log(props);
+
+  const { title, description, start_time } = props.event
+
+  const formateTime = start_time.split("T")[0]
+
   return (
     <Card>
-      <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
+      <Image src='https://www.scimarche.it/wp-content/uploads/2017/10/coppa-del-mondo-sci-2017-2018.jpg' />
       <Card.Content>
-        <Card.Header>Matthew</Card.Header>
+        <Card.Header>{title}</Card.Header>
         <Card.Meta>
-          <span className='date'>Joined in 2015</span>
+          <span className='date'>{formateTime}</span>
         </Card.Meta>
-        <Card.Description>Matthew is a musician living in Nashville.</Card.Description>
+        <Card.Description>{description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
         <a>

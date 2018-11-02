@@ -1,13 +1,19 @@
-import { ADD_EVENTS } from '../actions/actionTypes';
+import { ADD_EVENTS, UPDATE_SEARCH, UPDATE_SORT } from '../actions/actionTypes';
 
 const defaultState = {
-  events: []
+  events: [],
+  searchTerm: "",
+  sortType: ""
 }
 
 function eventReducer(state=defaultState, action) {
   switch (action.type) {
     case ADD_EVENTS:
       return {...state, events: [...state.events, ...action.payload]}
+    case UPDATE_SEARCH:
+      return {...state, searchTerm: action.payload}
+    case UPDATE_SORT:
+      return {...state, sortType: action.payload}
     default:
       return state
 

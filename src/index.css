@@ -13,8 +13,19 @@ code {
     monospace;
 }
 
-.resort-map{
+.resort-map {
   height: 500px;
   width: 700px;
   margin: 0 auto;
+}
+
+.event-search {
+  width: 45%;
+  margin: 5px auto;
+}
+
+.event-sort {
+  width: 45%;
+  height: 30%;
+  margin: 20px auto;
 }

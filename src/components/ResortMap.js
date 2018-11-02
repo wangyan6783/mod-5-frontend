@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Map, TileLayer } from 'react-leaflet';
 import Resort from './Resort';
+import { addResorts } from '../store/actions/index';
 
 class ResortMap extends Component {
 
@@ -9,14 +11,13 @@ class ResortMap extends Component {
      lat: 0,
      lng: 0
    },
-   zoom: 1,
-   resorts: []
+   zoom: 1
  }
 
   componentDidMount(){
     fetch("http://localhost:3001/api/v1/resorts")
     .then(response => response.json())
-    .then(resorts => this.setState({resorts}))
+    .then(resorts => this.props.dispatch(addResorts(resorts)))
 
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
@@ -50,10 +51,16 @@ class ResortMap extends Component {
          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
        />
-     {this.state.resorts.map(resort => <Resort key={resort.id} resort={resort} />)}
+     {this.props.resorts.map(resort => <Resort key={resort.id} resort={resort} />)}
      </Map>
     )
   }
 }
 
-export default ResortMap
+const mapStateToProps = state => {
+  return {
+    resorts: state.resortReducer.resorts
+  }
+}
+
+export default connect(mapStateToProps)(ResortMap);

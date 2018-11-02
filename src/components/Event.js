@@ -1,31 +1,29 @@
 import React from 'react';
-import { Button, Card, Image, Icon } from 'semantic-ui-react';
-
+import {Button, Card, Image, Icon} from 'semantic-ui-react';
 
 const Event = (props) => {
   // console.log(props);
 
-  const { title, description, start_time } = props.event
+  const {title, description, start_time} = props.event
 
   const formateTime = start_time.split("T")[0]
 
   return (
-    <Card>
-      <Image src='https://www.scimarche.it/wp-content/uploads/2017/10/coppa-del-mondo-sci-2017-2018.jpg' />
-      <Card.Content>
-        <Card.Header>{title}</Card.Header>
-        <Card.Meta>
-          <span className='date'>{formateTime}</span>
-        </Card.Meta>
-        <Card.Description>{description}</Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-        <a>
-          <Icon name='user' />
-          22 Friends
-        </a>
-      </Card.Content>
-    </Card>
+  		<div class="col" ontouchstart="this.classList.toggle('hover');">
+  			<div class="container">
+  				<div class="front" style={{backgroundImage: ` url(https://unsplash.it/508/508/)`}}>
+  					<div class="inner">
+  						<p>{title}</p>
+              <span>{formateTime}</span>
+  					</div>
+  				</div>
+  				<div class="back">
+  					<div class="inner">
+  						<p>{description}</p>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
   )
 }
 

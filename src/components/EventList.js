@@ -25,9 +25,12 @@ class EventList extends Component {
 
   render(){
     return (
-      <Card.Group itemsPerRow={3}>
-        {this.renderEvents().map(event => <Event key={event.id} event={event} />)}
-      </Card.Group>
+      <div class="wrapper">
+          <h1>Events</h1>
+          <div class="cols">
+            {this.renderEvents().map(event => <Event key={event.id} event={event} />)}
+          </div>
+       </div>
     )
   }
 }

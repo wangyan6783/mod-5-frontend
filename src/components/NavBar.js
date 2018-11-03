@@ -3,7 +3,7 @@ import { Menu, Segment } from 'semantic-ui-react'
 import { withRouter } from 'react-router';
 
 class NavBar extends Component {
-  state = { activeItem: 'home' }
+  state = { activeItem: '/home' }
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
@@ -21,23 +21,23 @@ class NavBar extends Component {
         <Menu inverted pointing secondary>
             <Menu.Item
             name='/home'
-            active={activeItem === 'home'}
+            active={activeItem === '/home'}
             onClick={this.handleItemClick} />
             <Menu.Item
             name='/resorts'
-            active={activeItem === 'resorts'}
+            active={activeItem === '/resorts'}
             onClick={this.handleItemClick} />
             <Menu.Item
               name='/events'
-              active={activeItem === 'events'}
+              active={activeItem === '/events'}
               onClick={this.handleItemClick} />
             <Menu.Item
             name='/login'
-            active={activeItem === 'login/signup'}
+            active={activeItem === '/login'}
             onClick={this.handleItemClick} />
             <Menu.Item
             name='/logout'
-            active={activeItem === 'logout'}
+            active={activeItem === '/logout'}
             onClick={this.handleItemClick} />
         </Menu>
       </Segment>

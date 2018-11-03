@@ -9,7 +9,7 @@ const defaultState = {
 function eventReducer(state=defaultState, action) {
   switch (action.type) {
     case ADD_EVENTS:
-      return {...state, events: [...state.events, ...action.payload]}
+      return {...state, events: action.payload}
     case UPDATE_SEARCH:
       return {...state, searchTerm: action.payload}
     case UPDATE_SORT:

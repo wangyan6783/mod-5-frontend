@@ -7,7 +7,7 @@ const defaultState = {
 function resortReducer(state=defaultState, action) {
   switch (action.type) {
     case ADD_RESORTS:
-      return {...state, resorts: [...state.resorts, ...action.payload]}
+      return {...state, resorts: action.payload}
     default:
       return state
 

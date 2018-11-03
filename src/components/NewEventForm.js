@@ -28,7 +28,6 @@ class NewEventForm extends Component {
   }
 
   onSubmit = (values) => {
-    console.log(values);
     createEvent(values, this.props.resortId, (url) => {
       this.props.history.push(url)
     });

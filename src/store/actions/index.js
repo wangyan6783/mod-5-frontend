@@ -27,3 +27,27 @@ export const updateSort = (type) => {
     payload: type
   }
 }
+
+export const createEvent = (values, resortId, redirectCb) => {
+  fetch("http://localhost:3001/api/v1/events", {
+    method: "POST",
+    headers: {
+      "Accept": 'application/json',
+      "Content-Type": 'application/json'
+    },
+    body: JSON.stringify({
+      event: {
+        title: values.title,
+        description: values.description,
+        date: values.date,
+        resort_id: resortId
+      }
+    })
+  })
+  .then(response => response.json())
+  .then(event => redirectCb(`/events/${event.id}`))
+
+  return {
+    type: "ADD_EVENT"
+  }
+}

@@ -1,22 +1,28 @@
 import React from 'react';
+import { withRouter } from "react-router";
 import {Button, Card, Image, Icon} from 'semantic-ui-react';
 
 const Event = (props) => {
 
-  const {title, description, date, image_url} = props.event
+  const {id, title, description, date, image_url} = props.event
+
+  const showDetails = () => {
+    props.history.push(`/events/${id}`)
+  }
 
   return (
-  		<div class="col" ontouchstart="this.classList.toggle('hover');">
-  			<div class="container">
-  				<div class="front" style={{backgroundImage: ` url(${image_url})`}}>
-  					<div class="inner">
+  		<div className="col" ontouchstart="this.classList.toggle('hover');">
+  			<div className="container">
+  				<div className="front" style={{backgroundImage: ` url(${image_url})`}}>
+  					<div className="inner">
   						<p>{title}</p>
               <span>{date}</span>
   					</div>
   				</div>
-  				<div class="back">
-  					<div class="inner">
+  				<div className="back">
+  					<div className="inner">
   						<p>{description}</p>
+              <Button onClick={showDetails}>Detail</Button>
   					</div>
   				</div>
   			</div>
@@ -24,4 +30,4 @@ const Event = (props) => {
   )
 }
 
-export default Event
+export default withRouter(Event)

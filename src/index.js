@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import HomePage from './pages/HomePage';
 import ResortsPage from './pages/ResortsPage';
 import ResortDetailPage from './pages/ResortDetailPage';
+import EventDetailPage from './pages/EventDetailPage';
 import EventsPage from './pages/EventsPage';
 import NavBar from './components/NavBar';
 import * as serviceWorker from './serviceWorker';
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route path='/' exact render={()=><HomePage />} />
         <Route path='/resorts' exact render={()=><ResortsPage />} />
         <Route path='/resorts/:id' exact render={props=><ResortDetailPage {...props} />} />
+        <Route path='/events/:id' exact render={props=><EventDetailPage {...props} />} />
         <Route path='/events' exact render={()=><EventsPage />} />
       </div>
     </Router>

@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { Button } from 'semantic-ui-react';
+import { addUserEvent } from '../store/actions/index';
 
 class ResortDetailPage extends Component {
 
@@ -11,19 +12,32 @@ class ResortDetailPage extends Component {
   componentDidMount(){
     fetch(`http://localhost:3001/api/v1/events/${this.props.match.params.id}`)
     .then(response => response.json())
-    .then(event => this.setState({event}))
+    .then(event => {
+      if (event.users.find(user => user.id === 105)) {
+        this.setState({
+          event,
+          going: true
+        })
+      } else {
+        this.setState({
+          event,
+          going: false
+        })
+      }
+    })
   }
 
   handleGoing = () => {
     if (this.state.going) {
       this.setState({
         going: !this.state.going,
-        event: {...this.state.event, users: this.state.event.users.filter(user => user.id !== 1)}
+        event: {...this.state.event, users: this.state.event.users.filter(user => user.id !== 105)}
       })
     } else {
+      addUserEvent(this.state.event.id)
       this.setState({
         going: !this.state.going,
-        event: {...this.state.event, users: [...this.state.event.users, { id: 1 }]}
+        event: {...this.state.event, users: [...this.state.event.users, { id: 105 }]}
       })
 
     }
@@ -46,5 +60,3 @@ class ResortDetailPage extends Component {
 }
 
 export default ResortDetailPage
-
-//

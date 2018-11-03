@@ -2,19 +2,16 @@ import React from 'react';
 import {Button, Card, Image, Icon} from 'semantic-ui-react';
 
 const Event = (props) => {
-  // console.log(props);
 
-  const {title, description, start_time} = props.event
-
-  const formateTime = start_time.split("T")[0]
+  const {title, description, date, image_url} = props.event
 
   return (
   		<div class="col" ontouchstart="this.classList.toggle('hover');">
   			<div class="container">
-  				<div class="front" style={{backgroundImage: ` url(https://unsplash.it/508/508/)`}}>
+  				<div class="front" style={{backgroundImage: ` url(${image_url})`}}>
   					<div class="inner">
   						<p>{title}</p>
-              <span>{formateTime}</span>
+              <span>{date}</span>
   					</div>
   				</div>
   				<div class="back">

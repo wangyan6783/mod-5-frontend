@@ -17,7 +17,10 @@ class ResortMap extends Component {
   componentDidMount(){
     fetch("http://localhost:3001/api/v1/resorts")
     .then(response => response.json())
-    .then(resorts => this.props.dispatch(addResorts(resorts)))
+    .then(resorts => {
+      this.props.dispatch(addResorts(resorts))
+
+    } )
 
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({

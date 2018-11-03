@@ -17,7 +17,7 @@ class EventList extends Component {
 
     if (this.props.sortType === "Event Date") {
       return filteredEvents.sort((a, b) => {
-        return new Date(a.start_time) - new Date(b.start_time)
+        return new Date(a.date) - new Date(b.date)
       })
     }
     return filteredEvents

@@ -14,7 +14,7 @@ const ResortEvents = (props) => {
 
       )
     } else {
-      return <h2>No Events</h2>
+      return <h1>No Events</h1>
     }
 }
 

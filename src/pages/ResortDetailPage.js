@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import ResortEvents from '../components/ResortEvents';
 import NewEventForm from '../components/NewEventForm';
-import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react'
+import { Button, Header, Modal } from 'semantic-ui-react'
 
 class ResortDetailPage extends Component {
 

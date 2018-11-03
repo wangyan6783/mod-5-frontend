@@ -1,5 +1,4 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router'
 import { NavLink } from 'react-router-dom';
 import L from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';

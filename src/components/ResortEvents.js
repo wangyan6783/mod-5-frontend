@@ -1,6 +1,5 @@
 import React from 'react';
 import Event from './Event';
-import { Card } from 'semantic-ui-react';
 
 const ResortEvents = (props) => {
     if (props.events.length !== 0) {

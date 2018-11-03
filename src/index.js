@@ -9,7 +9,7 @@ import EventDetailPage from './pages/EventDetailPage';
 import EventsPage from './pages/EventsPage';
 import NavBar from './components/NavBar';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import store from './store/store';
 import { Provider } from 'react-redux';
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Event from './Event';
-import { Card } from 'semantic-ui-react';
 import { addEvents } from '../store/actions/index';
 
 class EventList extends Component {

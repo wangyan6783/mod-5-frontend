@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment, Label } from 'semantic-ui-react'
+import { Menu, Segment } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
 
 class NavBar extends Component {

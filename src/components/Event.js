@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from "react-router";
-import {Button, Card, Image, Icon} from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
 const Event = (props) => {
 

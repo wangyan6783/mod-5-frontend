@@ -16,8 +16,9 @@ class ResortDetailPage extends Component {
     const { event } = this.state
     return (
       <Fragment>
-        {event.title}
-        {event.description}
+        <h1>{event.title}</h1>
+        {event.image_url}
+        <p>{event.description}</p>
       </Fragment>
     )
   }

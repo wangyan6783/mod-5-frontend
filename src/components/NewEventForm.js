@@ -56,7 +56,6 @@ class NewEventForm extends Component {
   //   )
   // }
   renderInputField = (field) => {
-    const className = `${field.meta.touched && field.meta.error} ? "has-danger" : ""`
     return (
       <Form.Field>
         <label>{field.label}</label>

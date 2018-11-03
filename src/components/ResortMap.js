@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Map, TileLayer } from 'react-leaflet';
 import Resort from './Resort';
-import { addResorts } from '../store/actions/index';
+import { fetchResorts } from '../store/actions/index';
 
 class ResortMap extends Component {
 
@@ -15,12 +15,7 @@ class ResortMap extends Component {
  }
 
   componentDidMount(){
-    fetch("http://localhost:3001/api/v1/resorts")
-    .then(response => response.json())
-    .then(resorts => {
-      this.props.dispatch(addResorts(resorts))
-
-    } )
+    this.props.dispatch(fetchResorts())
 
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({

@@ -19,6 +19,7 @@ ReactDOM.render(
       <div>
         <NavBar />
         <Route path='/' exact render={()=><HomePage />} />
+        <Route path='/home' exact render={()=><HomePage />} />
         <Route path='/resorts' exact render={()=><ResortsPage />} />
         <Route path='/resorts/:id' exact render={props=><ResortDetailPage {...props} />} />
         <Route path='/events/:id' exact render={props=><EventDetailPage {...props} />} />

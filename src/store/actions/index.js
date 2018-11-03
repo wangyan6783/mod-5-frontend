@@ -7,10 +7,26 @@ export const addEvents = (events) => {
   }
 }
 
+export const fetchEvents = () => {
+  return (dispatch) => {
+    fetch("http://localhost:3001/api/v1/events")
+    .then(response => response.json())
+    .then(events => dispatch(addEvents(events)))
+  }
+}
+
 export const addResorts = (resorts) => {
   return {
     type: ADD_RESORTS,
     payload: resorts
+  }
+}
+
+export const fetchResorts = () => {
+  return (dispatch) => {
+    fetch("http://localhost:3001/api/v1/resorts")
+    .then(response => response.json())
+    .then(resorts => dispatch(addResorts(resorts)))
   }
 }
 
@@ -46,8 +62,4 @@ export const createEvent = (values, resortId, redirectCb) => {
   })
   .then(response => response.json())
   .then(event => redirectCb(`/events/${event.id}`))
-
-  return {
-    type: "ADD_EVENT"
-  }
 }

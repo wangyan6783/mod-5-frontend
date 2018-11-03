@@ -29,7 +29,7 @@ class NewEventForm extends Component {
 
   onSubmit = (values) => {
     console.log(values);
-    this.props.createEvent(values, this.props.resortId, (url) => {
+    createEvent(values, this.props.resortId, (url) => {
       this.props.history.push(url)
     });
   }
@@ -68,8 +68,4 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: "NewEventForm"
-})(
-  connect(null, { createEvent })(
-    withRouter(NewEventForm)
-  )
-);
+})(connect()(withRouter(NewEventForm)));

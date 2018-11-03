@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Event from './Event';
-import { addEvents } from '../store/actions/index';
+import { fetchEvents } from '../store/actions/index';
 
 class EventList extends Component {
 
   componentDidMount(){
-    fetch("http://localhost:3001/api/v1/events")
-    .then(response => response.json())
-    .then(events => this.props.dispatch(addEvents(events)))
+    this.props.dispatch(fetchEvents())
   }
 
   renderEvents(){

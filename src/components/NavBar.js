@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 class NavBar extends Component {
   state = { activeItem: 'home' }
@@ -10,6 +10,7 @@ class NavBar extends Component {
     if (e.target.innerText === "Logout"){
       window.location.href = "http://localhost:3000/"
     }
+    this.props.history.push(`${name}`)
   }
 
   render() {
@@ -18,32 +19,24 @@ class NavBar extends Component {
     return (
       <Segment inverted>
         <Menu inverted pointing secondary>
-          <NavLink exact to="/">
             <Menu.Item
-            name='home'
+            name='/home'
             active={activeItem === 'home'}
             onClick={this.handleItemClick} />
-          </NavLink>
-          <NavLink exact to="/resorts">
             <Menu.Item
-            name='resorts'
+            name='/resorts'
             active={activeItem === 'resorts'}
             onClick={this.handleItemClick} />
-          </NavLink>
-          <NavLink exact to="/events">
             <Menu.Item
-              name='events'
+              name='/events'
               active={activeItem === 'events'}
               onClick={this.handleItemClick} />
-          </NavLink>
-          <NavLink exact to="/login">
             <Menu.Item
-            name='login/signup'
+            name='/login'
             active={activeItem === 'login/signup'}
             onClick={this.handleItemClick} />
-          </NavLink>
             <Menu.Item
-            name='logout'
+            name='/logout'
             active={activeItem === 'logout'}
             onClick={this.handleItemClick} />
         </Menu>
@@ -52,4 +45,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar
+export default withRouter(NavBar)

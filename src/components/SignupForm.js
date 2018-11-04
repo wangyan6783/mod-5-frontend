@@ -11,7 +11,8 @@ class SignupForm extends Component {
     return (
       <Form.Field>
         <label>{field.label}</label>
-        <input type={field.type} {...field.input} />
+        <input type={field.type} style={{width: '45%'}} {...field.input} />
+        <br />
         {field.meta.touched ? field.meta.error : ""}
       </Form.Field>
     )
@@ -41,13 +42,13 @@ function validate(values) {
   const errors = {};
 
   if (!values.username) {
-    errors.username = "Please enter a username";
+    errors.username = "Username cannot be blank";
   }
   if (!values.email) {
-    errors.email = "Please enter a email";
+    errors.email = "Email cannot be blank";
   }
   if (!values.password) {
-    errors.password = "Please enter a password";
+    errors.password = "Password cannot be blank";
   }
   return errors;
 }

@@ -51,13 +51,10 @@ function validate(values) {
   // values = {title: "asdf", description: "inputvalue", content: ""}
 
   if (!values.title) {
-    errors.title = "Please enter a title";
+    errors.title = "Title cannot be blank";
   }
   if (!values.date) {
-    errors.date = "Please enter a date";
-  }
-  if (!values.description) {
-    errors.description = "Please enter a description";
+    errors.date = "Date cannot be blank";
   }
   return errors;
 }

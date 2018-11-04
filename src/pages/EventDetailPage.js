@@ -65,8 +65,8 @@ class ResortDetailPage extends Component {
         {event.users ? <p>{event.users.length} skiers and snowboarders going</p> : null}
         <h2>Are you going?</h2>
         <Button onClick={this.handleGoing}>{going ? "No :(" : "Yes!" }</Button>
+        {event.comments ? <CommentContainer event={event}/> : null}
 
-        <CommentContainer />
       </Fragment>
     )
   }

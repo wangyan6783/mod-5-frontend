@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { Button } from 'semantic-ui-react';
-import { addUserEvent } from '../store/actions/index';
+import { addUserEvent, deleteUserEvent } from '../store/actions/index';
+import CommentContainer from '../components/CommentContainer';
 
 class ResortDetailPage extends Component {
 
@@ -27,8 +28,18 @@ class ResortDetailPage extends Component {
     })
   }
 
+  getUserEventId = () => {
+    const userEvent = this.state.event.user_events.find(userEvent => userEvent.user_id === 105)
+    if (userEvent) {
+      return userEvent.id
+    } else {
+      return null
+    }
+  }
+
   handleGoing = () => {
     if (this.state.going) {
+      deleteUserEvent(this.getUserEventId())
       this.setState({
         going: !this.state.going,
         event: {...this.state.event, users: this.state.event.users.filter(user => user.id !== 105)}
@@ -51,9 +62,11 @@ class ResortDetailPage extends Component {
         <img src={event.image_url} alt="" height="400px" width="600px" />
         <p>{event.date}</p>
         <p>{event.description}</p>
-        {event.users ? <p>{event.users.length} Skiers Going</p> : null}
+        {event.users ? <p>{event.users.length} skiers and snowboarders going</p> : null}
         <h2>Are you going?</h2>
         <Button onClick={this.handleGoing}>{going ? "No :(" : "Yes!" }</Button>
+
+        <CommentContainer />
       </Fragment>
     )
   }

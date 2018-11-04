@@ -83,3 +83,11 @@ export const addUserEvent = (eventId) => {
   .then(response => response.json())
   .then(data => console.log(data))
 }
+
+export const deleteUserEvent = (userEventId) => {
+  fetch(`http://localhost:3001/api/v1/user_events/${userEventId}`, {
+    method: "DELETE"
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+}

@@ -34,10 +34,8 @@ class NewEventForm extends Component {
   }
 
   render(){
-    const { handleSubmit } = this.props;
-
     return(
-      <Form onSubmit={handleSubmit(this.onSubmit)}>
+      <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field name="title" label="Title" component={this.renderInputField} />
         <Field name="date" label="Date" component={this.renderInputField} />
         <Field name="description" component={this.renderDescriptionField} />

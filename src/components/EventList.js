@@ -17,6 +17,11 @@ class EventList extends Component {
         return new Date(a.date) - new Date(b.date)
       })
     }
+    if (this.props.sortType === "Number of People Going") {
+      return filteredEvents.sort((a, b) => {
+        return b.users.length - a.users.length
+      })
+    }
     return filteredEvents
   }
 

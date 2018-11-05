@@ -1,4 +1,4 @@
-import { ADD_EVENTS, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT } from './actionTypes';
+import { ADD_EVENTS, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT } from './actionTypes';
 
 export const addEvents = (events) => {
   return {
@@ -41,6 +41,18 @@ export const updateSort = (type) => {
   return {
     type: UPDATE_SORT,
     payload: type
+  }
+}
+
+export const updateTutorialSelect = (searchTerm) => {
+
+
+  const endPoint = `https://www.googleapis.com/youtube/v3/search?key=${REACT_APP_YOUTUBE_API_KEY}&q=${searchTerm}&maxResults=45&type=video&part=snippet&order=viewCount`
+
+  return (dispatch) => {
+    fetch(endPoint)
+    .then(response => response.json())
+    .then(tutorials => dispatch({type: UPDATE_TUTORIAL_SELECT, payload: tutorials}))
   }
 }
 
@@ -87,6 +99,21 @@ export const addUserEvent = (eventId) => {
 export const deleteUserEvent = (userEventId) => {
   fetch(`http://localhost:3001/api/v1/user_events/${userEventId}`, {
     method: "DELETE"
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+}
+
+export const updateLikes = (commentId, like_count) => {
+  fetch(`http://localhost:3001/api/v1/comments/${commentId}`, {
+    method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        like_count
+      })
   })
   .then(response => response.json())
   .then(data => console.log(data))

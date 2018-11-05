@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 
 const Event = (props) => {
 
-  const {id, title, description, date, image_url} = props.event
+  const {id, title, users, date, image_url} = props.event
 
   const showDetails = () => {
     props.history.push(`/events/${id}`)
@@ -21,7 +21,7 @@ const Event = (props) => {
   				</div>
   				<div className="back">
   					<div className="inner">
-  						<p>{description}</p>
+  						<p>{users.length} People Going!</p>
               <Button onClick={showDetails}>Detail</Button>
   					</div>
   				</div>

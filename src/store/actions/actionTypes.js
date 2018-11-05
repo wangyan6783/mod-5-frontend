@@ -2,3 +2,4 @@ export const ADD_EVENTS = "ADD_EVENTS";
 export const ADD_RESORTS = "ADD_RESORTS";
 export const UPDATE_SEARCH = "UPDATE_SEARCH";
 export const UPDATE_SORT = "UPDATE_SORT";
+export const UPDATE_TUTORIAL_SELECT = "UPDATE_TUTORIAL_SELECT";

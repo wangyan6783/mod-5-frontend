@@ -7,6 +7,7 @@ import ResortsPage from './pages/ResortsPage';
 import ResortDetailPage from './pages/ResortDetailPage';
 import EventDetailPage from './pages/EventDetailPage';
 import EventsPage from './pages/EventsPage';
+import TutorialsPage from './pages/TutorialsPage';
 import LoginPage from './pages/LoginPage';
 import NavBar from './components/NavBar';
 import * as serviceWorker from './serviceWorker';
@@ -25,6 +26,7 @@ ReactDOM.render(
         <Route path='/resorts/:id' exact render={props=><ResortDetailPage {...props} />} />
         <Route path='/events' exact render={()=><EventsPage />} />
         <Route path='/events/:id' exact render={props=><EventDetailPage {...props} />} />
+        <Route path='/tutorials' exact render={()=><TutorialsPage />} />
         <Route path='/login' exact render={()=><LoginPage />} />
       </div>
     </Router>

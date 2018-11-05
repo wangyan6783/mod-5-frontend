@@ -4,11 +4,13 @@ import {reducer as formReducer } from 'redux-form';
 import userReducer from './reducers/userReducer';
 import eventReducer from './reducers/eventReducer';
 import resortReducer from './reducers/resortReducer';
+import tutorialReducer from './reducers/tutorialReducer';
 
 const rootReducer = combineReducers({
   userReducer,
   eventReducer,
   resortReducer,
+  tutorialReducer,
   form: formReducer
 })
 

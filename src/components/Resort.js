@@ -1,7 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import L from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
+import { Button } from 'semantic-ui-react';
 
 
 const Resort = ({resort}) => {
@@ -21,7 +22,7 @@ const Resort = ({resort}) => {
         <img src={resort.image_url} alt="Smiley face" height="200" width="300"/>
         <h2>{resort.name}</h2>
         <p>{resort.region}</p>
-        <NavLink exact to={`/resorts/${resort.id}`}><button>View Details</button></NavLink>
+        <Link exact to={`/resorts/${resort.id}`}><Button>View Details</Button></Link>
       </Popup>
     </Marker>
   )

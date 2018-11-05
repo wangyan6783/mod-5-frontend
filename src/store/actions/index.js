@@ -1,4 +1,5 @@
 import { ADD_EVENTS, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT } from './actionTypes';
+import { YOUTUBE_API_KEY } from '../../APIKeys';
 
 export const addEvents = (events) => {
   return {
@@ -46,8 +47,7 @@ export const updateSort = (type) => {
 
 export const updateTutorialSelect = (searchTerm) => {
 
-
-  const endPoint = `https://www.googleapis.com/youtube/v3/search?key=${REACT_APP_YOUTUBE_API_KEY}&q=${searchTerm}&maxResults=45&type=video&part=snippet&order=viewCount`
+  const endPoint = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&q=${searchTerm}&maxResults=15&type=video&part=snippet&order=viewCount`
 
   return (dispatch) => {
     fetch(endPoint)

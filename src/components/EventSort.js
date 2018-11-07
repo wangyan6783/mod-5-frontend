@@ -16,8 +16,8 @@ const EventSort = (props) => {
         image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
       },
       {
-        text: 'Number of People',
-        value: 'Number of People',
+        text: 'Number of People Going',
+        value: 'Number of People Going',
         image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
       },
     ]

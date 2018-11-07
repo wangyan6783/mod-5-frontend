@@ -1,59 +1,65 @@
-import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react';
-import { Field, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
-import { createEvent } from '../store/actions/index';
-import { withRouter } from "react-router";
+import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Redirect } from 'react-router'
+import { signupUser } from '../store/actions/index'
+import { Button, Form, Message } from 'semantic-ui-react'
 
-class SignupForm extends Component {
+class SignupForm extends React.Component {
+  state = { username: '', password: '' }
 
-  renderInputField = (field) => {
-    return (
-      <Form.Field>
-        <label>{field.label}</label>
-        <input type={field.type} style={{width: '45%'}} {...field.input} />
-        <br />
-        {field.meta.touched ? field.meta.error : ""}
-      </Form.Field>
-    )
+  handleChange = (e, data) => {
+    // data.name -> 'username'
+    this.setState({ [data.name]: data.value })
   }
 
-  onSubmit = (values) => {
-    createEvent(values, this.props.resortId, (url) => {
-      this.props.history.push(url)
-    });
+  handleLoginSubmit = () => { //semantic forms preventDefault automatically
+    this.props.signupUser(this.state.username, this.state.password) //comes from mapDispatchToProps
+    this.setState({ username: '', password: '' }) //reset form to initial state
   }
 
-  render(){
-    const { handleSubmit } = this.props;
+  render() {
+    return this.props.loggedIn ? (
+      <Redirect to="/profile" />
+    ) : (
+        <Form
+          onSubmit={this.handleLoginSubmit}
+          size="mini"
+          key="mini"
+          loading={this.props.authenticatingUser}
+          error={this.props.failedLogin}
+        >
+          <Message error header={this.props.failedLogin ? this.props.error : null} />
 
-    return(
-      <Form onSubmit={handleSubmit(this.onSubmit)}>
-        <Field name="username" label="Username" type="text" component={this.renderInputField} />
-        <Field name="email" label="Email" type="text" component={this.renderInputField} />
-        <Field name="password" label="Password" type="password" component={this.renderInputField} />
-        <Button type='submit'>Submit</Button>
-      </Form>
+            <Form.Input
+              label="username"
+              placeholder="username"
+              name="username"
+              onChange={this.handleChange}
+              value={this.state.username}
+            />
+            <Form.Input
+              type="password"
+              label="password"
+              placeholder="password"
+              name="password"
+              onChange={this.handleChange}
+              value={this.state.password}
+            />
+
+          <Button type="submit">Signup</Button>
+        </Form>
+
     )
   }
 }
 
-function validate(values) {
-  const errors = {};
-
-  if (!values.username) {
-    errors.username = "Username cannot be blank";
+const mapStateToProps = state => {
+  return {
+    authenticatingUser: state.userReducer.authenticatingUser,
+    failedLogin: state.userReducer.failedLogin,
+    error: state.userReducer.error,
+    loggedIn: state.userReducer.loggedIn
   }
-  if (!values.email) {
-    errors.email = "Email cannot be blank";
-  }
-  if (!values.password) {
-    errors.password = "Password cannot be blank";
-  }
-  return errors;
 }
 
-export default reduxForm({
-  validate,
-  form: "SignupForm"
-})(connect()(withRouter(SignupForm)));
+export default withRouter(connect(mapStateToProps, { signupUser })(SignupForm))

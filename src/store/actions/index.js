@@ -1,4 +1,5 @@
-import { ADD_EVENTS, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT } from './actionTypes';
+import { ADD_EVENTS, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN } from './actionTypes';
+import { YOUTUBE_API_KEY } from '../../APIKeys';
 
 export const addEvents = (events) => {
   return {
@@ -41,6 +42,17 @@ export const updateSort = (type) => {
   return {
     type: UPDATE_SORT,
     payload: type
+  }
+}
+
+export const updateTutorialSelect = (searchTerm) => {
+
+  const endPoint = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&q=${searchTerm}&maxResults=15&type=video&part=snippet&order=viewCount`
+
+  return (dispatch) => {
+    fetch(endPoint)
+    .then(response => response.json())
+    .then(tutorials => dispatch({type: UPDATE_TUTORIAL_SELECT, payload: tutorials}))
   }
 }
 
@@ -90,4 +102,106 @@ export const deleteUserEvent = (userEventId) => {
   })
   .then(response => response.json())
   .then(data => console.log(data))
+}
+
+export const updateLikes = (commentId, like_count) => {
+  fetch(`http://localhost:3001/api/v1/comments/${commentId}`, {
+    method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        like_count
+      })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+}
+
+export const loginUser = (username, password) => {
+  return (dispatch) => {
+    dispatch({ type: AUTHENTICATING_USER })
+    fetch("http://localhost:3001/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user: {
+          username,
+          password
+        }
+      })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw response
+      }
+      return response.json()
+    })
+    /* { user:
+     { username: 'chandler bing', bio: '', avatar: '' },
+     jwt: 'aaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccc'
+     } */
+    .then(data => {
+      localStorage.setItem('jwt', data.jwt)
+      dispatch({ type: SET_CURRENT_USER, payload: data.user })
+    })
+    .catch(r => r.json().then(e => dispatch({ type: FAILED_LOGIN, payload: e.message }))
+    )
+  }
+}
+
+export const signupUser = (username, password) => {
+  return (dispatch) => {
+    dispatch({ type: AUTHENTICATING_USER })
+    fetch("http://localhost:3001/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user: {
+          username,
+          password
+        }
+      })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw response
+      }
+      return response.json()
+    })
+    /* { user:
+     { username: 'chandler bing', bio: '', avatar: '' },
+     jwt: 'aaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccc'
+     } */
+    .then(data => {
+      localStorage.setItem('jwt', data.jwt)
+      dispatch({ type: SET_CURRENT_USER, payload: data.user })
+    })
+    .catch(r => r.json().then(e => dispatch({ type: FAILED_LOGIN, payload: e.message }))
+    )
+  }
+}
+
+
+
+export const fetchCurrentUser = () => {
+  return dispatch => {
+    dispatch({ type: AUTHENTICATING_USER })
+    fetch("http://localhost:3001/api/v1/profile", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+    .then(response => response.json())
+    .then(data => dispatch({ type: SET_CURRENT_USER, payload: data.user })
+    )
+  }
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router'
-// import { loginUser } from '../store/actions/index'
+import { loginUser } from '../store/actions/index'
 import { Button, Form, Message } from 'semantic-ui-react'
 
-class SignupForm extends React.Component {
-  state = { username: '', email: '', password: '' }
+class LoginForm extends React.Component {
+  state = { username: '', password: '' }
 
   handleChange = (e, data) => {
     // data.name -> 'username'
@@ -13,7 +13,7 @@ class SignupForm extends React.Component {
   }
 
   handleLoginSubmit = () => { //semantic forms preventDefault automatically
-    // this.props.loginUser(this.state.username, this.state.password) //comes from mapDispatchToProps
+    this.props.loginUser(this.state.username, this.state.password) //comes from mapDispatchToProps
     this.setState({ username: '', password: '' }) //reset form to initial state
   }
 
@@ -46,7 +46,7 @@ class SignupForm extends React.Component {
               onChange={this.handleChange}
               value={this.state.password}
             />
-      
+    
           <Button type="submit">Login</Button>
         </Form>
 
@@ -63,4 +63,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(SignupForm))
+export default withRouter(connect(mapStateToProps, { loginUser })(LoginForm))

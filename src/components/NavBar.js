@@ -1,16 +1,48 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { fetchCurrentUser } from '../store/actions/index';
 
 class NavBar extends Component {
   state = { activeItem: '/home' }
 
+  componentDidMount(){
+    if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentUser()
+  }
+
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
     if (e.target.innerText === "Logout"){
-      window.location.href = "http://localhost:3000/"
+      localStorage.removeItem("jwt");
+      window.location.href = "http://localhost:3000/";
     }
     this.props.history.push(`${name}`)
+  }
+
+  renderLoginProfile = () => {
+    const { activeItem } = this.state
+    if (this.props.loggedIn) {
+      return (
+        <Fragment>
+          <Menu.Item
+            name='/profile'
+            active={activeItem === '/profile'}
+            onClick={this.handleItemClick} />
+          <Menu.Item
+            name='/logout'
+            active={activeItem === '/logout'}
+            onClick={this.handleItemClick} />
+        </Fragment>
+      )
+    } else {
+      return (
+        <Menu.Item
+          name='/login'
+          active={activeItem === '/login'}
+          onClick={this.handleItemClick} />
+      )
+    }
   }
 
   render() {
@@ -35,18 +67,15 @@ class NavBar extends Component {
               name='/tutorials'
               active={activeItem === '/tutorials'}
               onClick={this.handleItemClick} />
-            <Menu.Item
-            name='/login'
-            active={activeItem === '/login'}
-            onClick={this.handleItemClick} />
-            <Menu.Item
-            name='/logout'
-            active={activeItem === '/logout'}
-            onClick={this.handleItemClick} />
+            {this.renderLoginProfile()}
         </Menu>
       </Segment>
     )
   }
 }
 
-export default withRouter(NavBar)
+const mapStateToProps = state => ({
+  loggedIn: state.userReducer.loggedIn
+})
+
+export default withRouter(connect(mapStateToProps, { fetchCurrentUser })(NavBar));

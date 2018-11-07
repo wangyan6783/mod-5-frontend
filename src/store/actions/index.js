@@ -154,6 +154,43 @@ export const loginUser = (username, password) => {
   }
 }
 
+export const signupUser = (username, password) => {
+  return (dispatch) => {
+    dispatch({ type: AUTHENTICATING_USER })
+    fetch("http://localhost:3001/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user: {
+          username,
+          password
+        }
+      })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw response
+      }
+      return response.json()
+    })
+    /* { user:
+     { username: 'chandler bing', bio: '', avatar: '' },
+     jwt: 'aaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccc'
+     } */
+    .then(data => {
+      localStorage.setItem('jwt', data.jwt)
+      dispatch({ type: SET_CURRENT_USER, payload: data.user })
+    })
+    .catch(r => r.json().then(e => dispatch({ type: FAILED_LOGIN, payload: e.message }))
+    )
+  }
+}
+
+
+
 export const fetchCurrentUser = () => {
   return dispatch => {
     dispatch({ type: AUTHENTICATING_USER })

@@ -59,7 +59,7 @@ class ResortDetailPage extends Component {
     return (
       <Fragment>
         <h1>{event.title}</h1>
-        <img src={event.image_url} alt="" height="400px" width="600px" />
+        <img src={event.image_url} alt="" height="400px" width="500px" />
         <p>{event.date}</p>
         <p>{event.description}</p>
         {event.users ? <p>{event.users.length} skiers and snowboarders going</p> : null}

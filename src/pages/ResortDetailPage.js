@@ -1,13 +1,15 @@
 import React, { Fragment, Component } from 'react';
 import ResortEvents from '../components/ResortEvents';
 import NewEventForm from '../components/NewEventForm';
-import { Button, Header, Modal } from 'semantic-ui-react'
+import { Button, Header, Modal, Icon, Image } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class ResortDetailPage extends Component {
 
   state = {
     resort: {},
-    showEvents: false
+    open: false
   }
 
   componentDidMount(){
@@ -17,28 +19,67 @@ class ResortDetailPage extends Component {
   }
 
   showEvents = () => {
-    this.setState({showEvents: true})
+    this.setState({open: true})
+  }
+
+  closeEvents = () => {
+    this.setState({ open: false })
+  }
+
+  renderModal = () => {
+    if (this.props.loggedIn) {
+      return (
+        <Fragment>
+          <Header icon='archive' content='Create a new event' />
+          <Modal.Content>
+            <NewEventForm resortId={this.props.match.params.id} />
+          </Modal.Content>
+        </Fragment>
+      )
+    } else {
+      return (
+        <Fragment>
+          <Header icon='archive' content='Please login to create an event' />
+          <Modal.Actions>
+            <Link to='/login'>
+              <Button color='grey' inverted>
+                <Icon name='checkmark' /> Login
+              </Button>
+            </Link>
+            <Link to='/signup'>
+              <Button color='grey' inverted>
+                <Icon name='checkmark' /> Signup
+              </Button>
+            </Link>
+          </Modal.Actions>
+        </Fragment>
+      )
+    }
   }
 
   render(){
-    const { resort } = this.state
+    const { resort, open } = this.state
     return (
       <Fragment>
         <h1>{resort.name}</h1>
-        <img src="https://www.telegraph.co.uk/content/dam/Travel/ski/Gear/All-mountain-skis.jpg?imwidth=1240" alt="" height="500px" width="760px" />
+        <img src="https://www.telegraph.co.uk/content/dam/Travel/ski/Gear/All-mountain-skis.jpg?imwidth=1240" alt="" height="300px" width="500px" />
         <br/>
         <Button onClick={this.showEvents}>Upcoming Events</Button>
+        <Modal dimmer="blurring" open={open} onClose={this.closeEvents}>
+          <Modal.Header>Upcoming Events</Modal.Header>
+          <ResortEvents events={resort.events}/>
+        </Modal>
 
-          <Modal trigger={<Button>Create an Event</Button>} basic size='small'>
-            <Header icon='archive' content='Create a new event' />
-            <Modal.Content>
-              <NewEventForm resortId={this.props.match.params.id} />
-            </Modal.Content>
-          </Modal>
-        {this.state.showEvents ? <ResortEvents events={resort.events} /> : null}
+        <Modal trigger={<Button>Create an Event</Button>} basic size="small">
+          {this.renderModal()}
+        </Modal>
       </Fragment>
     )
   }
 }
 
-export default ResortDetailPage
+const mapStateToProps = state => ({
+  loggedIn: state.userReducer.loggedIn
+})
+
+export default connect(mapStateToProps)(ResortDetailPage);

@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createEvent } from '../store/actions/index';
 import { withRouter } from "react-router";
+import { Label } from 'semantic-ui-react';
 
 class NewEventForm extends Component {
 
@@ -12,7 +13,10 @@ class NewEventForm extends Component {
       <Form.Field>
         <label>{field.label}</label>
         <input type="text"  placeholder={field.label} {...field.input} />
-        {field.meta.touched ? field.meta.error : ""}
+        {field.meta.touched ?
+          <Label basic color='red' pointing>
+            {field.meta.error}
+          </Label> : ""}
       </Form.Field>
     )
   }

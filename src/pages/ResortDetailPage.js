@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import ResortEvents from '../components/ResortEvents';
 import NewEventForm from '../components/NewEventForm';
-import { Button, Header, Modal, Icon, Image } from 'semantic-ui-react';
+import { Button, Header, Modal, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -32,7 +32,7 @@ class ResortDetailPage extends Component {
         <Fragment>
           <Header icon='archive' content='Create a new event' />
           <Modal.Content>
-            <NewEventForm resortId={this.props.match.params.id} />
+            <NewEventForm resortId={this.props.match.params.id} hostId={this.props.user.id} />
           </Modal.Content>
         </Fragment>
       )
@@ -79,7 +79,8 @@ class ResortDetailPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.userReducer.loggedIn
+  loggedIn: state.userReducer.loggedIn,
+  user: state.userReducer.user
 })
 
 export default connect(mapStateToProps)(ResortDetailPage);

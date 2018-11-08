@@ -56,7 +56,7 @@ export const updateTutorialSelect = (searchTerm) => {
   }
 }
 
-export const createEvent = (values, resortId, redirectCb) => {
+export const createEvent = (values, resortId, hostId, redirectCb) => {
   fetch("http://localhost:3001/api/v1/events", {
     method: "POST",
     headers: {
@@ -70,15 +70,18 @@ export const createEvent = (values, resortId, redirectCb) => {
         date: values.date,
         image_url: "http://this.deakin.edu.au/wp-content/uploads/2016/10/snowboarder3.jpg",
         resort_id: resortId,
-        host_id: 105
+        host_id: hostId
       }
     })
   })
   .then(response => response.json())
-  .then(event => redirectCb(`/events/${event.id}`))
+  .then(event => {
+    console.log(event);
+    redirectCb(`/events/${event.id}`)
+  } )
 }
 
-export const addUserEvent = (eventId) => {
+export const addUserEvent = (eventId, userId) => {
   fetch("http://localhost:3001/api/v1/user_events", {
     method: "POST",
     headers: {
@@ -88,7 +91,7 @@ export const addUserEvent = (eventId) => {
     body: JSON.stringify({
       user_event: {
         event_id: eventId,
-        user_id: 105
+        user_id: userId
       }
     })
   })

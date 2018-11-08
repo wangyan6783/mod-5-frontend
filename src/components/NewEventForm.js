@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Label } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createEvent } from '../store/actions/index';
 import { withRouter } from "react-router";
-import { Label } from 'semantic-ui-react';
 
 class NewEventForm extends Component {
 
@@ -13,10 +12,7 @@ class NewEventForm extends Component {
       <Form.Field>
         <label>{field.label}</label>
         <input type="text"  placeholder={field.label} {...field.input} />
-        {field.meta.touched ?
-          <Label basic color='red' pointing>
-            {field.meta.error}
-          </Label> : ""}
+        {field.meta.touched && field.meta.error ? <Label basic color='red' pointing> {field.meta.error}</Label> : ""}
       </Form.Field>
     )
   }
@@ -32,7 +28,7 @@ class NewEventForm extends Component {
   }
 
   onSubmit = (values) => {
-    createEvent(values, this.props.resortId, (url) => {
+    createEvent(values, this.props.resortId, this.props.hostId, (url) => {
       this.props.history.push(url)
     });
   }

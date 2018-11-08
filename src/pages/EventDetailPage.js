@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
-import { Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { Button, Popup } from 'semantic-ui-react';
 import { addUserEvent, deleteUserEvent } from '../store/actions/index';
 import CommentContainer from '../components/CommentContainer';
 
@@ -14,7 +15,7 @@ class ResortDetailPage extends Component {
     fetch(`http://localhost:3001/api/v1/events/${this.props.match.params.id}`)
     .then(response => response.json())
     .then(event => {
-      if (event.users.find(user => user.id === 105)) {
+      if (this.props.user && event.users.find(user => user.id === this.props.user.id)) {
         this.setState({
           event,
           going: true
@@ -29,7 +30,7 @@ class ResortDetailPage extends Component {
   }
 
   getUserEventId = () => {
-    const userEvent = this.state.event.user_events.find(userEvent => userEvent.user_id === 105)
+    const userEvent = this.state.event.user_events.find(userEvent => userEvent.user_id === this.props.user.id)
     if (userEvent) {
       return userEvent.id
     } else {
@@ -38,24 +39,35 @@ class ResortDetailPage extends Component {
   }
 
   handleGoing = () => {
-    if (this.state.going) {
-      deleteUserEvent(this.getUserEventId())
-      this.setState({
-        going: !this.state.going,
-        event: {...this.state.event, users: this.state.event.users.filter(user => user.id !== 105)}
-      })
-    } else {
-      addUserEvent(this.state.event.id)
-      this.setState({
-        going: !this.state.going,
-        event: {...this.state.event, users: [...this.state.event.users, { id: 105 }]}
-      })
+    if (this.props.user) {
+      if (this.state.going) {
+        deleteUserEvent(this.getUserEventId())
+        this.setState({
+          going: !this.state.going,
+          event: {...this.state.event, users: this.state.event.users.filter(user => user.id !== this.props.user.id)}
+        })
+      } else {
+        addUserEvent(this.state.event.id, this.props.user.id)
+        this.setState({
+          going: !this.state.going,
+          event: {...this.state.event, users: [...this.state.event.users, { id: this.props.user.id }]}
+        })
+        // this.props.history.push(`/events/${this.props.match.params.id}`)
+      }
+    }
+  }
 
+  renderGoingButton = () => {
+    const { going } = this.state
+    if (this.props.user) {
+      return <Button onClick={this.handleGoing}>{going ? "No :(" : "Yes!" }</Button>
+    } else {
+      return <Popup trigger={<Button onClick={this.handleGoing}>{going ? "No :(" : "Yes!" }</Button>} content="Please login to join this event!" />
     }
   }
 
   render() {
-    const { event, going } = this.state
+    const { event } = this.state
     return (
       <Fragment>
         <h1>{event.title}</h1>
@@ -64,12 +76,15 @@ class ResortDetailPage extends Component {
         <p>{event.description}</p>
         {event.users ? <p>{event.users.length} skiers and snowboarders going</p> : null}
         <h2>Are you going?</h2>
-        <Button onClick={this.handleGoing}>{going ? "No :(" : "Yes!" }</Button>
+        {this.renderGoingButton()}
         {event.comments ? <CommentContainer event={event}/> : null}
-
       </Fragment>
     )
   }
 }
 
-export default ResortDetailPage
+const mapStateToProps = state => ({
+  user: state.userReducer.user
+})
+
+export default connect(mapStateToProps)(ResortDetailPage)

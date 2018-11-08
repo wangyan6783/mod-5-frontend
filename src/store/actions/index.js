@@ -47,7 +47,8 @@ export const updateSort = (type) => {
 
 export const updateTutorialSelect = (searchTerm) => {
 
-  const endPoint = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&q=${searchTerm}&maxResults=15&type=video&part=snippet&order=viewCount`
+  const endPoint = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&q=${searchTerm}&maxResults=45&type=video&part=snippet&order=viewCount`
+  // const endPoint = `https://www.googleapis.com/youtube/v3/videos?id=V9xuy-rVj9w&key=${YOUTUBE_API_KEY}&part=snippet,contentDetails,statistics,status`
 
   return (dispatch) => {
     fetch(endPoint)
@@ -120,6 +121,39 @@ export const updateLikes = (commentId, like_count) => {
   })
   .then(response => response.json())
   .then(data => console.log(data))
+}
+
+export const saveTutorial = (videoId, userId) => {
+  fetch("http://localhost:3001/api/v1/tutorials", {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      tutorial: {
+        video_id: videoId
+      }
+    })
+  })
+  .then(response => response.json())
+  .then(tutorial =>
+    fetch("http://localhost:3001/api/v1/user_tutorials", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user_tutorial: {
+          tutorial_id: tutorial.id,
+          user_id: userId
+        }
+      })
+    })
+    .then(response => response.json())
+    .then(userTutorial => console.log(userTutorial))
+  )
 }
 
 export const loginUser = (username, password) => {

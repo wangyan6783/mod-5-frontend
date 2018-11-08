@@ -1,7 +1,30 @@
 import React from 'react';
-import { Card, Icon, Button, Label, Header, Modal } from 'semantic-ui-react';
+import { connect } from 'react-redux'
+import { Card, Icon, Button, Label, Header, Modal, Popup } from 'semantic-ui-react';
+import { saveTutorial } from '../store/actions/index';
 
 const Tutorial = (props) => {
+
+  const handleSave = () => {
+    if (props.user) {
+      saveTutorial(id.videoId, props.user.id)
+    }
+  }
+
+  const renderSaveBtn = () => {
+    if (props.user){
+      return (
+        <Button onClick={handleSave} basic color='grey' inverted>
+          <Icon name='remove' /> Save
+        </Button>
+      )
+    } else {
+      return (
+        <Popup trigger={<Button onClick={e => saveTutorial(id.videoId, )} basic color='grey' inverted><Icon name='remove' />Save</Button>} content="Please login to save this video!" />
+      )
+    }
+  }
+
   console.log(props.tutorial);
   const { id, snippet } = props.tutorial
   const videoUrl = `http://www.youtube.com/embed/${id.videoId}`;
@@ -13,9 +36,7 @@ const Tutorial = (props) => {
           <iframe width="560" height="315" src={`${videoUrl}?rel=0&autoplay=1`} frameBorder="0" allowFullScreen></iframe>
         </div>
         <Modal.Actions>
-          <Button basic color='grey' inverted>
-            <Icon name='remove' /> Save
-          </Button>
+          {renderSaveBtn()}
         </Modal.Actions>
       </Modal>
 
@@ -38,4 +59,8 @@ const Tutorial = (props) => {
   )
 }
 
-export default Tutorial
+const mapStateToProps = state => ({
+  user: state.userReducer.user
+})
+
+export default connect(mapStateToProps)(Tutorial);

@@ -1,4 +1,4 @@
-import { ADD_EVENTS, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN } from './actionTypes';
+import { ADD_EVENTS, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN, UPDATE_BIO } from './actionTypes';
 import { YOUTUBE_API_KEY } from '../../APIKeys';
 
 export const addEvents = (events) => {
@@ -226,8 +226,6 @@ export const signupUser = (username, password) => {
   }
 }
 
-
-
 export const fetchCurrentUser = () => {
   return dispatch => {
     dispatch({ type: AUTHENTICATING_USER })
@@ -240,5 +238,22 @@ export const fetchCurrentUser = () => {
     .then(response => response.json())
     .then(data => dispatch({ type: SET_CURRENT_USER, payload: data.user })
     )
+  }
+}
+
+export const addBio = (userId, bio) => {
+  return dispatch => {
+    fetch(`http://localhost:3001/api/v1/users/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        bio
+      })
+    })
+    .then(response => response.json())
+    .then(data => dispatch({ type: UPDATE_BIO, payload: data.bio }))
   }
 }

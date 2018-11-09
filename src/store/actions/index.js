@@ -1,4 +1,4 @@
-import { ADD_EVENTS, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN, UPDATE_BIO } from './actionTypes';
+import { ADD_EVENTS, ADD_USER_EVENT, DELETE_USER_EVENT, SET_CURRENT_EVENT, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN, UPDATE_BIO } from './actionTypes';
 import { YOUTUBE_API_KEY } from '../../APIKeys';
 
 export const addEvents = (events) => {
@@ -82,30 +82,49 @@ export const createEvent = (values, resortId, hostId, redirectCb) => {
   } )
 }
 
+export const setCurrentEvent = (event) => {
+  return {
+    type: SET_CURRENT_EVENT,
+    payload: event
+  }
+}
+
 export const addUserEvent = (eventId, userId) => {
-    fetch("http://localhost:3001/api/v1/user_events", {
-      method: "POST",
-      headers: {
-        "Accept": 'application/json',
-        "Content-Type": 'application/json'
-      },
-      body: JSON.stringify({
-        user_event: {
-          event_id: eventId,
-          user_id: userId
-        }
+    return dispatch => {
+      fetch("http://localhost:3001/api/v1/user_events", {
+        method: "POST",
+        headers: {
+          "Accept": 'application/json',
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+          user_event: {
+            event_id: eventId,
+            user_id: userId
+          }
+        })
       })
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        dispatch({type: ADD_USER_EVENT, payload: data})
+      })
+
+    }
 }
 
 export const deleteUserEvent = (userEventId) => {
-  fetch(`http://localhost:3001/api/v1/user_events/${userEventId}`, {
-    method: "DELETE"
-  })
-  .then(response => response.json())
-  .then(data => console.log(data))
+  return dispatch => {
+    fetch(`http://localhost:3001/api/v1/user_events/${userEventId}`, {
+      method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(data => {
+      dispatch({type: DELETE_USER_EVENT, payload: data})
+      console.log(data)
+    })
+
+  }
 }
 
 export const updateLikes = (commentId, like_count) => {

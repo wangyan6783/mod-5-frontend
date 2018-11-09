@@ -1,7 +1,8 @@
-import { ADD_EVENTS, UPDATE_SEARCH, UPDATE_SORT } from '../actions/actionTypes';
+import { ADD_EVENTS, SET_CURRENT_EVENT, ADD_USER_EVENT, DELETE_USER_EVENT, UPDATE_SEARCH, UPDATE_SORT } from '../actions/actionTypes';
 
 const defaultState = {
   events: [],
+  currentEvent: {},
   searchTerm: "",
   sortType: ""
 }
@@ -10,6 +11,12 @@ function eventReducer(state=defaultState, action) {
   switch (action.type) {
     case ADD_EVENTS:
       return {...state, events: action.payload}
+    case SET_CURRENT_EVENT:
+      return {...state, currentEvent: action.payload}
+    case ADD_USER_EVENT:
+      return {...state, currentEvent: {...state.currentEvent, user_events: [...state.currentEvent.user_events, action.payload]}}
+    case DELETE_USER_EVENT:
+      return {...state, currentEvent: {...state.currentEvent, user_events: state.currentEvent.user_events.filter(userEvent => userEvent.id !== action.payload.id)}}
     case UPDATE_SEARCH:
       return {...state, searchTerm: action.payload}
     case UPDATE_SORT:

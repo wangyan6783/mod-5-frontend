@@ -1,4 +1,7 @@
 export const ADD_EVENTS = "ADD_EVENTS";
+export const SET_CURRENT_EVENT = "SET_CURRENT_EVENT";
+export const ADD_USER_EVENT = "ADD_USER_EVENT";
+export const DELETE_USER_EVENT = "DELETE_USER_EVENT";
 export const ADD_RESORTS = "ADD_RESORTS";
 export const UPDATE_SEARCH = "UPDATE_SEARCH";
 export const UPDATE_SORT = "UPDATE_SORT";

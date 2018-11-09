@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Popup } from 'semantic-ui-react';
 import { addUserEvent, deleteUserEvent } from '../store/actions/index';
 import CommentContainer from '../components/CommentContainer';
+import { DELETE_EVENT_FROM_USER, ADD_EVENT_TO_USER} from '../store/actions/actionTypes';
 
 class ResortDetailPage extends Component {
 
@@ -42,12 +43,18 @@ class ResortDetailPage extends Component {
     if (this.props.user) {
       if (this.state.going) {
         deleteUserEvent(this.getUserEventId())
+
+        this.props.dispatch({type: DELETE_EVENT_FROM_USER, payload: this.state.event})
+
         this.setState({
           going: !this.state.going,
           event: {...this.state.event, users: this.state.event.users.filter(user => user.id !== this.props.user.id)}
         })
       } else {
         addUserEvent(this.state.event.id, this.props.user.id)
+
+        this.props.dispatch({type: ADD_EVENT_TO_USER, payload: this.state.event})
+        
         this.setState({
           going: !this.state.going,
           event: {...this.state.event, users: [...this.state.event.users, { id: this.props.user.id }]}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button, TextArea, Form } from 'semantic-ui-react';
 import withAuth from '../hocs/withAuth';
 import { addBio } from '../store/actions/index';
+import UserEvents from '../components/UserEvents';
 
 class ProfilePage extends Component {
   state = {
@@ -20,7 +21,12 @@ class ProfilePage extends Component {
 
   renderBioButton = () => {
     if (this.props.bio) {
-      return this.props.bio;
+      return (
+        <Fragment>
+          <h3>Bio</h3>
+          <p>{this.props.bio}</p>
+        </Fragment>
+      )
     } else if (this.state.showBioButton) {
       return <Button onClick={this.showBioInput}>Add a bio</Button>;
     } else {
@@ -33,7 +39,7 @@ class ProfilePage extends Component {
   }
 
   handleAddBio = () => {
-    this.props.addBio(this.props.userId, this.state.bio)
+    this.props.addBio(this.props.user.id, this.state.bio)
     this.setState({
       showBioInput: false
     })
@@ -54,13 +60,15 @@ class ProfilePage extends Component {
             </Form>
           </Fragment> : null}
 
+          <UserEvents events={this.props.user.events}/>
+
       </Fragment>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  userId: state.userReducer.user.id,
+  user: state.userReducer.user,
   avatar: state.userReducer.user.avatar,
   username: state.userReducer.user.username,
   bio: state.userReducer.user.bio

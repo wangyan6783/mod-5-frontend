@@ -83,21 +83,21 @@ export const createEvent = (values, resortId, hostId, redirectCb) => {
 }
 
 export const addUserEvent = (eventId, userId) => {
-  fetch("http://localhost:3001/api/v1/user_events", {
-    method: "POST",
-    headers: {
-      "Accept": 'application/json',
-      "Content-Type": 'application/json'
-    },
-    body: JSON.stringify({
-      user_event: {
-        event_id: eventId,
-        user_id: userId
-      }
+    fetch("http://localhost:3001/api/v1/user_events", {
+      method: "POST",
+      headers: {
+        "Accept": 'application/json',
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify({
+        user_event: {
+          event_id: eventId,
+          user_id: userId
+        }
+      })
     })
-  })
-  .then(response => response.json())
-  .then(data => console.log(data))
+    .then(response => response.json())
+    .then(data => console.log(data))
 }
 
 export const deleteUserEvent = (userEventId) => {

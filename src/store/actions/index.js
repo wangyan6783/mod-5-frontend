@@ -89,7 +89,7 @@ export const setCurrentEvent = (event) => {
   }
 }
 
-export const addUserEvent = (eventId, userId) => {
+export const addUserEvent = (event, user) => {
     return dispatch => {
       fetch("http://localhost:3001/api/v1/user_events", {
         method: "POST",
@@ -99,29 +99,29 @@ export const addUserEvent = (eventId, userId) => {
         },
         body: JSON.stringify({
           user_event: {
-            event_id: eventId,
-            user_id: userId
+            event_id: event.id,
+            user_id: user.id
           }
         })
       })
       .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        dispatch({type: ADD_USER_EVENT, payload: data})
+      .then(userEvent => {
+        console.log(userEvent)
+        dispatch({type: ADD_USER_EVENT, payload: {userEvent, event, user}})
       })
 
     }
 }
 
-export const deleteUserEvent = (userEventId) => {
+export const deleteUserEvent = (userEvent, event, user) => {
   return dispatch => {
-    fetch(`http://localhost:3001/api/v1/user_events/${userEventId}`, {
+    fetch(`http://localhost:3001/api/v1/user_events/${userEvent.id}`, {
       method: "DELETE"
     })
     .then(response => response.json())
-    .then(data => {
-      dispatch({type: DELETE_USER_EVENT, payload: data})
-      console.log(data)
+    .then(userEvent => {
+      dispatch({type: DELETE_USER_EVENT, payload: {userEvent, event, user}})
+      console.log(userEvent)
     })
 
   }

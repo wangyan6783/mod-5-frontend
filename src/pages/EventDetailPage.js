@@ -29,19 +29,14 @@ class ResortDetailPage extends Component {
     })
   }
 
-  getUserEventId = () => {
-    const userEvent = this.props.event.user_events.find(userEvent => userEvent.user_id === this.props.user.id)
-    if (userEvent) {
-      return userEvent.id
-    } else {
-      return null
-    }
+  getUserEvent = () => {
+    return this.props.event.user_events.find(userEvent => userEvent.user_id === this.props.user.id)
   }
 
   handleGoing = () => {
     if (this.props.user) {
       if (this.state.going) {
-        this.props.deleteUserEvent(this.getUserEventId())
+        this.props.deleteUserEvent(this.getUserEvent(), this.props.event, this.props.user)
 
         // this.props.dispatch({type: DELETE_EVENT_FROM_USER, payload: this.props.event})
 
@@ -49,7 +44,7 @@ class ResortDetailPage extends Component {
           going: !this.state.going
         })
       } else {
-        this.props.addUserEvent(this.props.event.id, this.props.user.id)
+        this.props.addUserEvent(this.props.event, this.props.user)
 
         // this.props.dispatch({type: ADD_EVENT_TO_USER, payload: this.props.event})
 

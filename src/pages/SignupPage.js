@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 const SignupPage = () => {
   return (
     <Fragment>
-      <h1>Join our community!</h1>
+      <h1>Sign up</h1>
       <SignupForm />
       <p>Already have an account?</p>
-      <Link exact to="/login">Login</Link>
+      <Link to="/login">Login</Link>
     </Fragment>
   )
 }

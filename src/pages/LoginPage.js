@@ -8,7 +8,7 @@ const LoginPage = () => {
       <h1>Log in</h1>
       <LoginForm />
       <p>Don't have an account?</p>
-      <Link exact to="/signup">Signup</Link>
+      <Link to="/signup">Signup</Link>
     </Fragment>
   )
 }

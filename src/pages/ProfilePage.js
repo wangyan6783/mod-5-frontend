@@ -24,7 +24,7 @@ class ProfilePage extends Component {
       return (
         <Fragment>
           <h3>Bio</h3>
-          <p>{this.props.bio}</p>
+          {this.props.bio}
         </Fragment>
       )
     } else if (this.state.showBioButton) {
@@ -51,7 +51,7 @@ class ProfilePage extends Component {
         <h2>{this.props.username}</h2>
         <img src='https://cdn1.vectorstock.com/i/1000x1000/73/15/female-avatar-profile-icon-round-woman-face-vector-18307315.jpg' alt="" height="300px" width="300px" />
         {this.props.avatar}
-        <p>{this.renderBioButton()}</p>
+        <div>{this.renderBioButton()}</div>
         {this.state.showBioInput ?
           <Fragment>
             <Form onSubmit={this.handleAddBio}>

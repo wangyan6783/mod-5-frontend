@@ -14,9 +14,9 @@ function eventReducer(state=defaultState, action) {
     case SET_CURRENT_EVENT:
       return {...state, currentEvent: action.payload}
     case ADD_USER_EVENT:
-      return {...state, currentEvent: {...state.currentEvent, user_events: [...state.currentEvent.user_events, action.payload.userEvent]}}
+      return {...state, currentEvent: {...state.currentEvent, user_events: [...state.currentEvent.user_events, action.payload.userEvent], users: [...state.currentEvent.users, action.payload.user]}}
     case DELETE_USER_EVENT:
-      return {...state, currentEvent: {...state.currentEvent, user_events: state.currentEvent.user_events.filter(userEvent => userEvent.id !== action.payload.userEvent.id)}}
+      return {...state, currentEvent: {...state.currentEvent, user_events: state.currentEvent.user_events.filter(userEvent => userEvent.id !== action.payload.userEvent.id), users: state.currentEvent.users.filter(user => user.id !== action.payload.user.id)}}
     case UPDATE_SEARCH:
       return {...state, searchTerm: action.payload}
     case UPDATE_SORT:

@@ -4,7 +4,7 @@ import Event from './Event';
 const ResortEvents = (props) => {
     if (props.events.length !== 0) {
       return(
-        <div class="cols">
+        <div className="cols">
           {props.events.map(event => <Event key={event.id} event={event} />)}
         </div>
       )

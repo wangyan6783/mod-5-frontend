@@ -51,7 +51,7 @@ class Tutorial extends Component {
         <Modal trigger={<img src={snippet.thumbnails.medium.url} alt="" />} basic size='small'>
           <Header icon='archive' content={snippet.title} />
           <div className="responsive">
-            <iframe width="560" height="315" src={`${videoUrl}?rel=0&autoplay=1`} frameBorder="0" allowFullScreen></iframe>
+            <iframe title={id} width="560" height="315" src={`${videoUrl}?rel=0&autoplay=1`} frameBorder="0" allowFullScreen></iframe>
           </div>
           <Modal.Actions>
             {this.renderSaveBtn()}

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Button, Popup } from 'semantic-ui-react';
 import { addUserEvent, deleteUserEvent, setCurrentEvent } from '../store/actions/index';
 import CommentContainer from '../components/CommentContainer';
-import { DELETE_EVENT_FROM_USER, ADD_EVENT_TO_USER} from '../store/actions/actionTypes';
 
 class ResortDetailPage extends Component {
 
@@ -37,21 +36,14 @@ class ResortDetailPage extends Component {
     if (this.props.user) {
       if (this.state.going) {
         this.props.deleteUserEvent(this.getUserEvent(), this.props.event, this.props.user)
-
-        // this.props.dispatch({type: DELETE_EVENT_FROM_USER, payload: this.props.event})
-
         this.setState({
           going: !this.state.going
         })
       } else {
         this.props.addUserEvent(this.props.event, this.props.user)
-
-        // this.props.dispatch({type: ADD_EVENT_TO_USER, payload: this.props.event})
-
         this.setState({
           going: !this.state.going
         })
-        // this.props.history.push(`/events/${this.props.match.params.id}`)
       }
     }
   }

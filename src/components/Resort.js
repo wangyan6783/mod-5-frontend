@@ -22,7 +22,7 @@ const Resort = ({resort}) => {
         <img src={resort.image_url} alt="Smiley face" height="200" width="300"/>
         <h2>{resort.name}</h2>
         <p>{resort.region}</p>
-        <Link exact to={`/resorts/${resort.id}`}><Button>View Details</Button></Link>
+        <Link to={`/resorts/${resort.id}`}><Button>View Details</Button></Link>
       </Popup>
     </Marker>
   )

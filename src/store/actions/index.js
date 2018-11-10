@@ -1,5 +1,5 @@
 import { ADD_EVENTS, ADD_USER_EVENT, DELETE_USER_EVENT, SET_CURRENT_EVENT, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN, UPDATE_BIO } from './actionTypes';
-import { YOUTUBE_API_KEY } from '../../APIKeys';
+import { YoutubeAPIKey } from '../../secretKeys';
 
 export const addEvents = (events) => {
   return {
@@ -47,7 +47,7 @@ export const updateSort = (type) => {
 
 export const updateTutorialSelect = (searchTerm) => {
 
-  const endPoint = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&q=${searchTerm}&maxResults=45&type=video&part=snippet&order=viewCount`
+  const endPoint = `https://www.googleapis.com/youtube/v3/search?key=${YoutubeAPIKey}&q=${searchTerm}&maxResults=45&type=video&part=snippet&order=viewCount`
   // const endPoint = `https://www.googleapis.com/youtube/v3/videos?id=V9xuy-rVj9w&key=${YOUTUBE_API_KEY}&part=snippet,contentDetails,statistics,status`
 
   return (dispatch) => {

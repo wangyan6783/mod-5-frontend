@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Card, Icon, Button, Header, Modal } from 'semantic-ui-react';
-import { YOUTUBE_API_KEY } from '../APIKeys';
+import { YoutubeAPIKey } from '../secretKeys';
 
 class UserTutorial extends Component {
 
@@ -14,7 +14,7 @@ class UserTutorial extends Component {
   }
 
   componentDidMount(){
-    fetch(`https://www.googleapis.com/youtube/v3/videos?id=${this.props.tutorial.video_id}&key=${YOUTUBE_API_KEY}&part=snippet,contentDetails,statistics,status`)
+    fetch(`https://www.googleapis.com/youtube/v3/videos?id=${this.props.tutorial.video_id}&key=${YoutubeAPIKey}&part=snippet,contentDetails,statistics,status`)
     .then(response => response.json())
     .then(video => this.setState({
       thumbnail: video.items[0].snippet.thumbnails.medium.url,

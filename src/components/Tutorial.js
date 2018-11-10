@@ -45,13 +45,13 @@ class Tutorial extends Component {
 
   render() {
     const { id, snippet } = this.props.tutorial
-    const videoUrl = `http://www.youtube.com/embed/${id.videoId}`;
+    const videoUrl = `http://www.youtube.com/embed/${id.videoId}?rel=0&autoplay=1`;
     return (
       <Card>
-        <Modal trigger={<img src={snippet.thumbnails.medium.url} alt="" />} basic size='small'>
+        <Modal trigger={<img src={snippet.thumbnails.medium.url} alt="" />} dimmer="blurring" basic size='small'>
           <Header icon='archive' content={snippet.title} />
           <div className="responsive">
-            <iframe title={id} width="560" height="315" src={`${videoUrl}?rel=0&autoplay=1`} frameBorder="0" allowFullScreen></iframe>
+            <iframe title={id} width="560" height="315" src={videoUrl} frameBorder="0" allowFullScreen></iframe>
           </div>
           <Modal.Actions>
             {this.renderSaveBtn()}

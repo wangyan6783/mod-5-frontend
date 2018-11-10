@@ -4,6 +4,7 @@ import { Button, TextArea, Form } from 'semantic-ui-react';
 import withAuth from '../hocs/withAuth';
 import { addBio } from '../store/actions/index';
 import UserEvents from '../components/UserEvents';
+import UserTutorials from '../components/UserTutorials';
 
 class ProfilePage extends Component {
   state = {
@@ -23,7 +24,7 @@ class ProfilePage extends Component {
     if (this.props.bio) {
       return (
         <Fragment>
-          <h3>Bio</h3>
+          <h2>Bio</h2>
           {this.props.bio}
         </Fragment>
       )
@@ -59,9 +60,10 @@ class ProfilePage extends Component {
               <Button>Submit</Button>
             </Form>
           </Fragment> : null}
-
+          <h2>My Events</h2>
           <UserEvents events={this.props.user.events}/>
-
+          <h2>Saved Tutorials</h2>
+          <UserTutorials tutorials={this.props.user.tutorials}/>
       </Fragment>
     )
   }

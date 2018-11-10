@@ -276,3 +276,9 @@ export const addBio = (userId, bio) => {
     .then(data => dispatch({ type: UPDATE_BIO, payload: data.bio }))
   }
 }
+
+export const getFullTutorial = () => {
+  return dispatch => {
+
+  }
+}

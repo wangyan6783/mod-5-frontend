@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { Button, Popup } from 'semantic-ui-react';
 import { addUserEvent, deleteUserEvent, setCurrentEvent } from '../store/actions/index';
 import CommentContainer from '../components/CommentContainer';
+import ChatContainer from '../components/ChatContainer';
 
 class ResortDetailPage extends Component {
 
   state = {
-    going: false
+    going: false,
+    chat: false
   }
 
   componentDidMount(){
@@ -57,6 +59,10 @@ class ResortDetailPage extends Component {
     }
   }
 
+  handleChat = () => {
+    this.setState({chat: !this.state.chat})
+  }
+
   render() {
     const { event } = this.props
     return (
@@ -68,7 +74,10 @@ class ResortDetailPage extends Component {
         {event.users ? <p>{event.users.length} skiers and snowboarders going</p> : null}
         <h2>Are you going?</h2>
         {this.renderGoingButton()}
+        <h2>Join our chatroom</h2>
+        <Button onClick={this.handleChat}>{this.state.chat ? "Close" : "Open"}</Button>
         {event.comments ? <CommentContainer event={event}/> : null}
+        {this.state.chat ? <ChatContainer event={event} /> : null}
       </Fragment>
     )
   }

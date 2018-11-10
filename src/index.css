@@ -31,6 +31,26 @@ code {
   margin: 20px auto;
 }
 
+.chat-container{
+  width: 30%;
+  height: 50%;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 200px;
+  bottom: 20px;
+  left: 800px;
+}
+
+.chat-list {
+  padding: 18px;
+}
+.text-left{
+  text-align: left;
+}
+.text-right{
+  text-align: right;
+}
+
 /* youtube iframe responsive start */
 
 .responsive {

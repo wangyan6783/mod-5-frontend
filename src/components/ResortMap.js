@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Map, TileLayer } from 'react-leaflet';
 import Resort from './Resort';
 import { fetchResorts } from '../store/actions/index';
+import resortMapBackground from '../images/resort-map-background.png';
 
 class ResortMap extends Component {
 
@@ -44,13 +45,17 @@ class ResortMap extends Component {
     const position = [this.state.location.lat, this.state.location.lng]
 
     return (
-      <Map className="resort-map" center={position} zoom={this.state.zoom}>
-       <TileLayer
-         attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-       />
-     {this.props.resorts.map(resort => <Resort key={resort.id} resort={resort} />)}
-     </Map>
+      <Fragment>
+        <div className="resort-map-container">
+          <img className="resort-map-background" src={resortMapBackground} alt="" />
+          <Map className="resort-map" center={position} zoom={this.state.zoom}>
+           <TileLayer
+             url='http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
+           />
+         {this.props.resorts.map(resort => <Resort key={resort.id} resort={resort} />)}
+         </Map>
+       </div>
+     </Fragment>
     )
   }
 }
@@ -62,3 +67,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(ResortMap);
+
+// 'https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}'

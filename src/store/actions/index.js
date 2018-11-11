@@ -1,5 +1,5 @@
-import { ADD_EVENTS, ADD_USER_EVENT, DELETE_USER_EVENT, SET_CURRENT_EVENT, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN, UPDATE_BIO } from './actionTypes';
-import { YoutubeAPIKey } from '../../secretKeys';
+import { ADD_EVENTS, ADD_USER_EVENT, DELETE_USER_EVENT, SET_CURRENT_EVENT, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN, UPDATE_BIO, UPDATE_PROFILE_PHOTO } from './actionTypes';
+import { YoutubeAPIKey, cloudinaryUrl, cloudinaryUploadPreset } from '../../secretKeys';
 
 export const addEvents = (events) => {
   return {
@@ -257,6 +257,39 @@ export const fetchCurrentUser = () => {
     .then(response => response.json())
     .then(data => dispatch({ type: SET_CURRENT_USER, payload: data.user })
     )
+  }
+}
+
+export const updateBackendProfile = (userId, avatarUrl) => {
+  fetch(`http://localhost:3001/api/v1/users/${userId}`, {
+    method: "PATCH",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      avatar: avatarUrl
+    })
+  })
+  .then(response => response.json())
+  .then(console.log)
+}
+
+export const updateProfilePhoto = (userId, file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', cloudinaryUploadPreset);
+  return dispatch => {
+    fetch(cloudinaryUrl, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      updateBackendProfile(userId, data.secure_url)
+      dispatch({type: UPDATE_PROFILE_PHOTO, payload: data.secure_url})
+    })
+
   }
 }
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { Card, Icon, Button, Header, Modal } from 'semantic-ui-react';
+import { Card, Header, Modal } from 'semantic-ui-react';
 import { YoutubeAPIKey } from '../secretKeys';
 
 class UserTutorial extends Component {
@@ -26,7 +25,7 @@ class UserTutorial extends Component {
   }
 
   render() {
-    const {thumbnail, title, videoUrl, publishedAt, description} = this.state
+    const { thumbnail, title, videoUrl, publishedAt } = this.state
     return (
       <Card>
         <Modal trigger={<img src={thumbnail} alt="" />} basic size='small'>

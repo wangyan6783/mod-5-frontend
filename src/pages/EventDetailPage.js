@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Popup } from 'semantic-ui-react';
+import { Button, Popup, Icon } from 'semantic-ui-react';
 import { addUserEvent, deleteUserEvent, setCurrentEvent } from '../store/actions/index';
 import CommentContainer from '../components/CommentContainer';
 import ChatContainer from '../components/ChatContainer';
@@ -53,9 +53,9 @@ class ResortDetailPage extends Component {
   renderGoingButton = () => {
     const { going } = this.state
     if (this.props.user) {
-      return <Button onClick={this.handleGoing}>{going ? "No :(" : "Yes!" }</Button>
+      return <Button secondary onClick={this.handleGoing}>{going ? "No :(" : "Yes!" }</Button>
     } else {
-      return <Popup trigger={<Button onClick={this.handleGoing}>{going ? "No :(" : "Yes!" }</Button>} content="Please login to join this event!" />
+      return <Popup trigger={<Button secondary onClick={this.handleGoing}>{going ? "No :(" : "Yes!" }</Button>} content="Please login to join this event!" />
     }
   }
 
@@ -68,14 +68,15 @@ class ResortDetailPage extends Component {
     return (
       <Fragment>
         <h1>{event.title}</h1>
-        <img src={event.image_url} alt="" height="400px" width="500px" />
-        <p>{event.date}</p>
-        <p>{event.description}</p>
-        {event.users ? <p>{event.users.length} skiers and snowboarders going</p> : null}
+
+        <img src={event.image_url} alt="" height="500px" width="760px" />
+        <Icon name='calendar alternate outline' /><h3 className="event-date">{event.date}</h3>
+        <h5>{event.description}</h5>
         <h2>Are you going?</h2>
         {this.renderGoingButton()}
+        {event.users ? <h5>{event.users.length} skiers and snowboarders going</h5> : null}
         <h2>Join our chatroom</h2>
-        <Button onClick={this.handleChat}>{this.state.chat ? "Close" : "Open"}</Button>
+        <Button secondary onClick={this.handleChat}>{this.state.chat ? "Close" : "Open"}</Button>
         {event.comments ? <CommentContainer event={event}/> : null}
         {this.state.chat ? <ChatContainer event={event} /> : null}
       </Fragment>

@@ -125,6 +125,13 @@ img {
 
 /* events page end */
 
+/* event detail page start */
+
+.event-date {
+  display: inline-block;
+}
+/* event detail page end */
+
 /* profile image overlay start */
 
 .profile-container {
@@ -279,10 +286,10 @@ h1{
 }
 
 .back{
-  background: #cedce7;
-  background: -webkit-linear-gradient(45deg,  #cedce7 0%,#596a72 100%);
-  background: -o-linear-gradient(45deg,  #cedce7 0%,#596a72 100%);
-  background: linear-gradient(45deg,  #cedce7 0%,#596a72 100%);
+  background: #0fb9b1;
+  background: -webkit-linear-gradient(45deg,  #0fb9b1 0%,#596a72 100%);
+  background: -o-linear-gradient(45deg,  #0fb9b1 0%,#596a72 100%);
+  background: linear-gradient(45deg,  #0fb9b1 0%,#596a72 100%);
 }
 
 .front:after{

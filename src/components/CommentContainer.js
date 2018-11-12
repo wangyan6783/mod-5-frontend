@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
+import { List } from 'semantic-ui-react';
 
 class CommentContainer extends Component {
   state = {
@@ -16,8 +17,10 @@ class CommentContainer extends Component {
   render(){
     return(
       <Fragment>
-        <h3>Comments</h3>
-        {this.state.comments.map(comment => <Comment key={comment.id} comment={comment}/>)}
+        <h2>Comments</h2>
+        <List relaxed='very' animated>
+          {this.state.comments.map(comment => <Comment key={comment.id} comment={comment}/>)}
+        </List>
         <CommentForm addComment={this.addComment} eventId={this.props.event.id}/>
       </Fragment>
     )

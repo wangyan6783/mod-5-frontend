@@ -13,7 +13,7 @@ const Event = (props) => {
   return (
   		<div className="col" onTouchStart={()=>this.classList.toggle('hover')}>
   			<div className="container">
-  				<div className="front" style={{backgroundImage: ` url(${image_url})`}}>
+            <div className="front" style={{backgroundImage: ` url(${image_url})`}}>
   					<div className="inner">
   						<p>{title}</p>
               <span>{date}</span>

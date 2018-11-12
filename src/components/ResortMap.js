@@ -47,13 +47,13 @@ class ResortMap extends Component {
     return (
       <Fragment>
         <div className="resort-map-container">
-          <img className="resort-map-background" src={resortMapBackground} alt="" />
           <Map className="resort-map" center={position} zoom={this.state.zoom}>
-           <TileLayer
+            <TileLayer
              url='http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
            />
          {this.props.resorts.map(resort => <Resort key={resort.id} resort={resort} />)}
          </Map>
+         <img className="resort-map-background" src={resortMapBackground} alt="" />
        </div>
      </Fragment>
     )

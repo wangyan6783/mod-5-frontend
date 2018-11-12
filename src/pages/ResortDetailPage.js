@@ -8,8 +8,7 @@ import { Link } from 'react-router-dom';
 class ResortDetailPage extends Component {
 
   state = {
-    resort: {},
-    open: false
+    resort: {}
   }
 
   componentDidMount(){
@@ -18,19 +17,12 @@ class ResortDetailPage extends Component {
     .then(resort => this.setState({resort}))
   }
 
-  showEvents = () => {
-    this.setState({open: true})
-  }
-
-  closeEvents = () => {
-    this.setState({ open: false })
-  }
-
   renderModal = () => {
     if (this.props.loggedIn) {
       return (
         <Fragment>
-          <Header icon='archive' content='Create a new event' />
+          <Modal.Header><h2 className="text-center">Create an event</h2></Modal.Header>
+
           <Modal.Content>
             <NewEventForm resortId={this.props.match.params.id} hostId={this.props.user.id} />
           </Modal.Content>
@@ -39,40 +31,44 @@ class ResortDetailPage extends Component {
     } else {
       return (
         <Fragment>
-          <Header icon='archive' content='Please login to create an event' />
-          <Modal.Actions>
-            <Link to='/login'>
-              <Button color='grey' inverted>
-                <Icon name='checkmark' /> Login
-              </Button>
-            </Link>
-            <Link to='/signup'>
-              <Button color='grey' inverted>
-                <Icon name='checkmark' /> Signup
-              </Button>
-            </Link>
-          </Modal.Actions>
+            <Modal.Header icon='angle double right'><h2>Please login to create an event</h2></Modal.Header>
+            <div id="new-event-login-btn-container">
+            <Modal.Actions>
+              <Link to='/login'>
+                <Button color='black' inverted>
+                  <Icon name='checkmark' /> Login
+                </Button>
+              </Link>
+              <Link to='/signup'>
+                <Button color='black' inverted>
+                  <Icon name='checkmark' /> Signup
+                </Button>
+              </Link>
+            </Modal.Actions>
+          </div>
+
         </Fragment>
       )
     }
   }
 
   render(){
-    const { resort, open } = this.state
+    const { resort } = this.state
     return (
       <Fragment>
-        <h1>{resort.name}</h1>
-        <img src="https://www.telegraph.co.uk/content/dam/Travel/ski/Gear/All-mountain-skis.jpg?imwidth=1240" alt="" height="300px" width="500px" />
-        <br/>
-        <Button onClick={this.showEvents}>Upcoming Events</Button>
-        <Modal dimmer="blurring" open={open} onClose={this.closeEvents}>
-          <Modal.Header>Upcoming Events</Modal.Header>
-          <ResortEvents events={resort.events}/>
-        </Modal>
-
-        <Modal trigger={<Button>Create an Event</Button>} basic size="small">
-          {this.renderModal()}
-        </Modal>
+        <div id="resort-detail-page">
+          <h1>{resort.name}</h1>
+          <img src={resort.image_url} alt="" height="500px" width="760px" />
+          <Modal dimmer="blurring" trigger={<Button onClick={this.showEvents} secondary className="detail-button">Upcoming Events</Button>}>
+            <Modal.Header><h1>Upcoming Events</h1></Modal.Header>
+            <Modal.Content>
+            <ResortEvents events={resort.events}/>
+            </Modal.Content>
+          </Modal>
+          <Modal trigger={<Button secondary className="detail-button">Create an Event</Button>} basic size="small">
+            {this.renderModal()}
+          </Modal>
+        </div>
       </Fragment>
     )
   }
@@ -84,3 +80,5 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(ResortDetailPage);
+
+// <Header icon='archive' content='Create an event' />

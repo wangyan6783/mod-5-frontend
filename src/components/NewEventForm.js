@@ -10,9 +10,9 @@ class NewEventForm extends Component {
   renderInputField = (field) => {
     return (
       <Form.Field>
-        <label>{field.label}</label>
-        <input type="text"  placeholder={field.label} {...field.input} />
-        {field.meta.touched && field.meta.error ? <Label basic color='red' pointing> {field.meta.error}</Label> : ""}
+        <label className="form-label">{field.label}</label>
+        <input type="text" {...field.input} />
+        {field.meta.touched && field.meta.error ? <Label basic color='teal' pointing> {field.meta.error}</Label> : ""}
       </Form.Field>
     )
   }
@@ -21,7 +21,7 @@ class NewEventForm extends Component {
     return (
       <Form.Field>
         <label>Description</label>
-        <textarea type="text"  placeholder="Description" {...field.input} />
+        <textarea type="text" {...field.input} />
         {field.meta.touched ? field.meta.error : ""}
       </Form.Field>
     )
@@ -39,7 +39,7 @@ class NewEventForm extends Component {
         <Field name="title" label="Title" component={this.renderInputField} />
         <Field name="date" label="Date" component={this.renderInputField} />
         <Field name="description" component={this.renderDescriptionField} />
-        <Button type='submit'>Submit</Button>
+        <Button type='submit' color="teal">Submit</Button>
       </Form>
     )
   }

@@ -7,6 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  /* background-image: url("./images/resort-map-background.png") */
 }
 
 code {
@@ -14,6 +15,18 @@ code {
     monospace;
 }
 
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* nav bar start */
+.ui.inverted.segment, .ui.primary.inverted.segment {
+  margin-bottom: 0;
+}
+/* nav bar end */
+
+/* resort map start */
 .resort-map-container {
   position: relative;
 }
@@ -29,19 +42,88 @@ code {
   left: 7%;
   height: 680px;
   width: 1000px;
-  /* margin: 0 auto; */
 }
 
-.event-search {
+/* resort map end */
+
+/* resort start */
+.resort-btn-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.text-center {
+  text-align: center;
+  margin: 25px auto;
+}
+/* resort end */
+
+/* resort detail page start */
+
+#resort-detail-page {
+  margin: 3% 1%;
+}
+
+#resort-detail-page .button {
+  margin: 3% 1%;
+}
+
+/* resort detail page end */
+
+/* new event form start */
+.ui.form .field>label {
+  color: white;
+}
+
+.ui.teal.button, .ui.teal.buttons .button {
+  display: block;
+  margin: 6% auto;
+  width: 30%;
+}
+/* new event form end */
+
+/* new event login start */
+
+.ui.small.modal>.header:not(.ui) {
+  margin-bottom: 15%;
+  text-align: center;
+}
+#new-event-login-btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 5%;
+}
+
+.ui.inverted.black.button, .ui.inverted.black.buttons .button {
+  margin: 20px;
+}
+
+/* new event login end */
+
+/* events page start */
+
+/* event search */
+.ui.large.input {
   width: 45%;
-  margin: 5px auto;
+  margin: 3% auto;
+  display: block;
 }
 
+.ui.icon.input>input {
+  width: 100%;
+}
+
+/* event sort */
 .event-sort {
   width: 45%;
-  height: 30%;
-  margin: 20px auto;
+  margin: 1% auto;
 }
+
+#events-container {
+  margin: 3% auto;
+}
+
+/* events page end */
 
 /* profile image overlay start */
 
@@ -140,8 +222,8 @@ code {
 
 h1{
   font-size: 2.5rem;
-  font-family: 'Montserrat';
-  font-weight: normal;
+  /* font-family: 'Montserrat'; */
+  /* font-weight: normal; */
   color: #444;
   text-align: center;
   margin: 2rem 0;

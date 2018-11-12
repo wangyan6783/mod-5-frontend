@@ -19,10 +19,13 @@ const Resort = ({resort}) => {
   return (
     <Marker position={resortLocation(resort)} icon={icon}>
       <Popup>
-        <img src={resort.image_url} alt="Smiley face" height="200" width="300"/>
-        <h2>{resort.name}</h2>
-        <p>{resort.region}</p>
-        <Link to={`/resorts/${resort.id}`}><Button>View Details</Button></Link>
+        <img src={resort.image_url} alt={resort.name} height="200" width="300"/>
+          <h2 className="text-center">{resort.name}</h2>
+          <h4 className="text-center">{resort.region}</h4>
+        <div className="resort-btn-container">
+          <Link to={`/resorts/${resort.id}`}><Button secondary>View Events</Button></Link>
+          <a href={resort.website_url} target="_blank" rel="noopener noreferrer"><Button secondary>Visit Website</Button></a>
+        </div>
       </Popup>
     </Marker>
   )

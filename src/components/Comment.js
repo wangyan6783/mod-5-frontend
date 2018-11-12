@@ -12,18 +12,19 @@ class Comment extends Component {
     this.setState({likes: this.state.likes + 1}, () => updateLikes(this.props.comment.id, this.state.likes))
   }
   render() {
+    console.log(this.props);
     return(
       <Fragment>
         <List.Item>
           <Image avatar src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
           <List.Content>
-            <List.Header as='a'>Elliot Fu</List.Header>
+            <List.Header >{this.props.comment.user.username}</List.Header>
             <List.Description>
-              {this.state.likes} likes {this.props.comment.content}
+              <Icon name="heart" color="red" onClick={this.handleLike}/>
+              <h4 className="like-text">{this.state.likes} likes </h4> {this.props.comment.content}
             </List.Description>
           </List.Content>
         </List.Item>
-
       </Fragment>
     )
   }

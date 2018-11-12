@@ -67,18 +67,20 @@ class ResortDetailPage extends Component {
     const { event } = this.props
     return (
       <Fragment>
-        <h1>{event.title}</h1>
+        <div className="event-detail-page">
+          <h1>{event.title}</h1>
+          <img src={event.image_url} alt="" height="500px" width="760px" />
+          <Icon name='calendar alternate outline' /><h3 className="event-date">{event.date}</h3>
+          <h5>{event.description}</h5>
+          <h2>Are you going?</h2>
+          {this.renderGoingButton()}
+          {event.users ? <h5>{event.users.length} skiers and snowboarders going</h5> : null}
+          <h2>Join our chatroom</h2>
+          {this.props.user ? (<Button secondary onClick={this.handleChat}>{this.state.chat ? "Close" : "Open"}</Button>) : <Popup trigger={<Button secondary>Open</Button>} content="Please login to join chat room" />}
 
-        <img src={event.image_url} alt="" height="500px" width="760px" />
-        <Icon name='calendar alternate outline' /><h3 className="event-date">{event.date}</h3>
-        <h5>{event.description}</h5>
-        <h2>Are you going?</h2>
-        {this.renderGoingButton()}
-        {event.users ? <h5>{event.users.length} skiers and snowboarders going</h5> : null}
-        <h2>Join our chatroom</h2>
-        <Button secondary onClick={this.handleChat}>{this.state.chat ? "Close" : "Open"}</Button>
-        {event.comments ? <CommentContainer event={event}/> : null}
-        {this.state.chat ? <ChatContainer event={event} /> : null}
+          {event.comments ? <CommentContainer event={event}/> : null}
+        </div>
+          {this.state.chat ? <ChatContainer event={event} /> : null}
       </Fragment>
     )
   }

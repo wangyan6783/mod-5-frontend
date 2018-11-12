@@ -70,7 +70,7 @@ class ChatContainer extends Component {
            <Segment clearing>
              <Form onSubmit={this.handleSubmit}>
                 <Input onChange={this.handleChange} value={this.state.message} />
-                <Button type="submit" floated='right'>send</Button>
+                <Button secondary type="submit" floated='right'>send</Button>
               </Form>
             </Segment>
          </Segment.Group>

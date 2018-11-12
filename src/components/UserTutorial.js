@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Card, Header, Modal } from 'semantic-ui-react';
 import { YoutubeAPIKey } from '../secretKeys';
+import youtubePlay from '../images/youtube-play.png';
 
 class UserTutorial extends Component {
 
@@ -24,11 +25,20 @@ class UserTutorial extends Component {
     }))
   }
 
+  renderThumbnail = () => {
+    return (
+      <div className="tutorial-thumbnail" style={{backgroundImage: `url(${this.state.thumbnail})`}}>
+        <div className="tutorial-thumbnail-overlay"></div>
+        <img src={youtubePlay} className="youtube-play" alt="" />
+      </div>
+    )
+  }
+
   render() {
     const { thumbnail, title, videoUrl, publishedAt } = this.state
     return (
       <Card>
-        <Modal trigger={<img src={thumbnail} alt="" />} basic size='small'>
+        <Modal trigger={this.renderThumbnail()} basic size='small'>
           <Header icon='archive' content={title} />
           <div className="responsive">
             <iframe title={title} width="560" height="315" src={videoUrl} frameBorder="0" allowFullScreen></iframe>

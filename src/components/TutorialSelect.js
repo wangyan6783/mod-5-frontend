@@ -6,9 +6,11 @@ import { updateTutorialSelect } from '../store/actions/index';
 const TutorialSelect = (props) => {
   return (
     <Fragment>
-      <Button onClick={(e, data) => props.updateTutorialSelect(data.children)
-        }>Ski Tutorials</Button>
-      <Button onClick={(e, data) => props.updateTutorialSelect(data.children)}>Snowboard Tutorials</Button>
+      <div className="tutorial-button-container">
+        <Button secondary onClick={(e, data) => props.updateTutorialSelect(data.children)
+        }>Skiing</Button>
+        <Button secondary onClick={(e, data) => props.updateTutorialSelect(data.children)}>Snowboarding</Button>
+      </div>
     </Fragment>
   )
 }

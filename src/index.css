@@ -127,10 +127,67 @@ img {
 
 /* event detail page start */
 
+.event-detail-page {
+  margin: 3%;
+}
+
 .event-date {
   display: inline-block;
 }
+
+.like-text {
+  display: inline;
+}
+
+.ui[class*="very relaxed"].list:not(.horizontal)>.item:not(:last-child) {
+  margin: 3%
+}
+
+.event-detail-page .ui.secondary.button, .ui.secondary.buttons .button {
+  margin: 3%;
+  width: 15%;
+}
+
 /* event detail page end */
+
+/* tutorials page start */
+
+.tutorials-page {
+  margin: 3%
+}
+
+.tutorial-button-container .ui.secondary.button, .ui.secondary.buttons .button {
+  margin: 3%;
+  margin-bottom: 6%;
+  width: 15%;
+}
+
+.tutorial-thumbnail {
+  height: 200px;
+  background-size: cover;
+  position: relative;
+  z-index: 2;
+}
+
+.tutorial-thumbnail-overlay {
+  position: absolute;
+  background-color: rgba(0,0,0,0.7);
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+}
+
+.youtube-play {
+  position: absolute;
+  height: 70%;
+  width: 78%;
+  margin: 30px;
+  z-index: 10;
+}
+
+/* tutorials page end */
 
 /* profile image overlay start */
 
@@ -207,6 +264,7 @@ img {
   height: 0%;
   padding-bottom: 56.25%;
   position:relative;
+  margin: 3%;
 }
 
 .responsive iframe {

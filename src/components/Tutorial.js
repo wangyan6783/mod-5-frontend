@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { Card, Icon, Button, Header, Modal, Popup } from 'semantic-ui-react';
 import { saveTutorial } from '../store/actions/index';
+import youtubePlay from '../images/youtube-play.png';
 
 class Tutorial extends Component {
 
@@ -43,13 +44,25 @@ class Tutorial extends Component {
     }
   }
 
+  renderThumbnail = () => {
+    return (
+
+        <div className="tutorial-thumbnail" style={{backgroundImage: `url(${this.props.tutorial.snippet.thumbnails.medium.url})`}}>
+          <div className="tutorial-thumbnail-overlay"></div>
+          <img src={youtubePlay} className="youtube-play" alt="" />
+        </div>
+
+    )
+  }
+
   render() {
     const { id, snippet } = this.props.tutorial
     const videoUrl = `http://www.youtube.com/embed/${id.videoId}?rel=0&autoplay=1`;
     return (
       <Card>
-        <Modal trigger={<img src={snippet.thumbnails.medium.url} alt="" />} dimmer="blurring" basic size='small'>
-          <Header icon='archive' content={snippet.title} />
+        <Modal trigger={this.renderThumbnail()} dimmer="blurring" basic size='small'>
+
+          <Header><h2 className="text-center"><Icon name='youtube play' />{snippet.title}</h2></Header>
           <div className="responsive">
             <iframe title={id} width="560" height="315" src={videoUrl} frameBorder="0" allowFullScreen></iframe>
           </div>
@@ -61,7 +74,7 @@ class Tutorial extends Component {
         <Card.Content>
           <Card.Header>{snippet.title}</Card.Header>
           <Card.Meta>
-            <span className='date'>Published at: {snippet.publishedAt}</span>
+            <span className='date'>Published on: {snippet.publishedAt.split("T")[0]}</span>
           </Card.Meta>
           <Card.Description>{snippet.description}</Card.Description>
         </Card.Content>
@@ -75,3 +88,5 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(Tutorial);
+
+// <img src={snippet.thumbnails.medium.url} alt="" />

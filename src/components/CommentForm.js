@@ -44,7 +44,7 @@ class CommentForm extends Component {
       <Fragment>
         <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <Field name="comment" label="Add a comment" type="text" component={this.renderInputField} />
-          {this.props.user ? <Button type='submit'>Submit</Button> : <Popup trigger={<Button type='submit'>Submit</Button>} content="Please login to add a comment!" />}
+          {this.props.user ? <Button secondary type='submit'>Submit</Button> : <Popup trigger={<Button secondary>Submit</Button>} content="Please login to add a comment" />}
         </Form>
       </Fragment>
     )

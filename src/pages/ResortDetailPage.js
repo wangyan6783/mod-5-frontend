@@ -30,7 +30,7 @@ class ResortDetailPage extends Component {
       )
     } else {
       return (
-        <Fragment>
+        <div className="new-event-login">
             <Modal.Header icon='angle double right'><h2>Please login to create an event</h2></Modal.Header>
             <div id="new-event-login-btn-container">
             <Modal.Actions>
@@ -47,7 +47,7 @@ class ResortDetailPage extends Component {
             </Modal.Actions>
           </div>
 
-        </Fragment>
+        </div>
       )
     }
   }

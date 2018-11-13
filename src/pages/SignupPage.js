@@ -7,8 +7,8 @@ const SignupPage = () => {
     <Fragment>
       <h1>Sign up</h1>
       <SignupForm />
-      <p>Already have an account?</p>
-      <Link to="/login">Login</Link>
+      <h4>Already have an account?</h4>
+      <Link to="/login"><h5>Login</h5></Link>
     </Fragment>
   )
 }

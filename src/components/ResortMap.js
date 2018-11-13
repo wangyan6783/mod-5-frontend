@@ -49,7 +49,7 @@ class ResortMap extends Component {
         <div className="resort-map-container">
           <Map className="resort-map" center={position} zoom={this.state.zoom}>
             <TileLayer
-             url='http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
+             url='https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
            />
          {this.props.resorts.map(resort => <Resort key={resort.id} resort={resort} />)}
          </Map>

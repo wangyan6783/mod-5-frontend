@@ -1,4 +1,4 @@
-import { ADD_EVENTS, ADD_USER_EVENT, DELETE_USER_EVENT, SET_CURRENT_EVENT, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN, UPDATE_BIO, UPDATE_PROFILE_PHOTO } from './actionTypes';
+import { ADD_EVENTS, ADD_USER_EVENT, DELETE_USER_EVENT, SET_CURRENT_EVENT, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, SAVE_USER_TUTORIAL, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN, UPDATE_BIO, UPDATE_PROFILE_PHOTO } from './actionTypes';
 import { YoutubeAPIKey, cloudinaryUrl, cloudinaryUploadPreset } from '../../secretKeys';
 
 export const addEvents = (events) => {
@@ -79,7 +79,7 @@ export const createEvent = (values, resortId, hostId, redirectCb) => {
   .then(event => {
     console.log(event);
     redirectCb(`/events/${event.id}`)
-  } )
+  })
 }
 
 export const setCurrentEvent = (event) => {
@@ -143,36 +143,41 @@ export const updateLikes = (commentId, like_count) => {
 }
 
 export const saveTutorial = (videoId, userId) => {
-  fetch("http://localhost:3001/api/v1/tutorials", {
-    method: "POST",
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      tutorial: {
-        video_id: videoId
-      }
-    })
-  })
-  .then(response => response.json())
-  .then(tutorial =>
-    fetch("http://localhost:3001/api/v1/user_tutorials", {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        user_tutorial: {
-          tutorial_id: tutorial.id,
-          user_id: userId
-        }
+  return (dispatch) => {
+      fetch("http://localhost:3001/api/v1/tutorials", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          tutorial: {
+            video_id: videoId
+          }
+        })
       })
-    })
-    .then(response => response.json())
-    .then(userTutorial => console.log(userTutorial))
-  )
+      .then(response => response.json())
+      .then(tutorial => {
+        dispatch({type: SAVE_USER_TUTORIAL, payload: tutorial})
+        console.log(tutorial)
+        fetch("http://localhost:3001/api/v1/user_tutorials", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            user_tutorial: {
+              tutorial_id: tutorial.id,
+              user_id: userId
+            }
+          })
+        })
+        .then(response => response.json())
+        .then(userTutorial => console.log(userTutorial))
+       }
+      )
+    }
 }
 
 export const loginUser = (username, password) => {

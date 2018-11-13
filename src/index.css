@@ -20,12 +20,42 @@ img {
   margin: 0 auto;
 }
 
+.text-margin {
+  margin: 5%;
+}
+
 /* nav bar start */
 .ui.inverted.segment, .ui.primary.inverted.segment {
   margin-bottom: 0;
 }
 /* nav bar end */
 
+/* homepage start */
+.homepage-video {
+  height: 720px;
+  width: 1280px;
+  position: relative;
+  z-index: 2;
+}
+
+video {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  z-index: 5;
+}
+
+.homevideo-overlay {
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 10;
+
+}
+
+/* homepage end */
 /* resort map start */
 .resort-map-container {
   position: relative;
@@ -75,7 +105,7 @@ img {
   color: white;
 }
 
-.ui.teal.button, .ui.teal.buttons .button {
+.new-event-form .ui.teal.button, .ui.teal.buttons .button {
   display: block;
   margin: 6% auto;
   width: 30%;
@@ -84,7 +114,7 @@ img {
 
 /* new event login start */
 
-.ui.small.modal>.header:not(.ui) {
+.new-event-login .ui.small.modal>.header:not(.ui) {
   margin-bottom: 15%;
   text-align: center;
 }
@@ -148,6 +178,30 @@ img {
   width: 15%;
 }
 
+
+/* chat component start */
+
+.chat-container{
+  width: 30%;
+  height: 50%;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 200px;
+  bottom: 20px;
+  left: 800px;
+}
+
+.chat-list {
+  padding: 18px;
+}
+.text-left{
+  text-align: left;
+}
+.text-right{
+  text-align: right;
+}
+/* chat component end */
+
 /* event detail page end */
 
 /* tutorials page start */
@@ -180,6 +234,7 @@ img {
 }
 
 .youtube-play {
+  opacity: 0.7;
   position: absolute;
   height: 70%;
   width: 78%;
@@ -187,7 +242,27 @@ img {
   z-index: 10;
 }
 
+.ui.basic.modal>.actions, .ui.basic.modal>.content, .ui.basic.modal>.header {
+  position: relative;
+}
+
+/* save button */
+.ui.inverted.grey.basic.button, .ui.inverted.grey.basic.buttons .button, .ui.inverted.grey.buttons .basic.button {
+  position: absolute;
+  left: 44%;
+  top: 100%;
+}
+
+/* save button */
+.ui.modal .actions>.button {
+  position: absolute;
+  left: 44%;
+  top: 100%;
+}
+
 /* tutorials page end */
+
+/* profile page start */
 
 /* profile image overlay start */
 
@@ -236,26 +311,39 @@ img {
 
 /* profile image overlay end */
 
-
-.chat-container{
-  width: 30%;
-  height: 50%;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 200px;
-  bottom: 20px;
-  left: 800px;
+.bio-button .ui.secondary.button {
+  margin: 5%;
+  width: 15%;
 }
 
-.chat-list {
-  padding: 18px;
+.bio-form {
+  margin: 3% 10%;
 }
-.text-left{
-  text-align: left;
+
+.bio-form .ui.secondary.button {
+  margin: 5%;
+  width: 15%;
 }
-.text-right{
-  text-align: right;
+
+.bio-text {
+  margin: 5%;
 }
+
+/* profile page end */
+
+/* login signup page start */
+
+.login-signup-form {
+  margin: 3% 30%;
+}
+
+.login-signup-form .ui.secondary.button {
+  margin: 12%;
+  width: 40%;
+}
+
+/* login signup page end */
+
 
 /* youtube iframe responsive start */
 

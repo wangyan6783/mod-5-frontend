@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN, UPDATE_BIO, ADD_USER_EVENT, DELETE_USER_EVENT, UPDATE_PROFILE_PHOTO } from '../actions/actionTypes';
+import { SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN, UPDATE_BIO, ADD_USER_EVENT, DELETE_USER_EVENT, SAVE_USER_TUTORIAL, UPDATE_PROFILE_PHOTO } from '../actions/actionTypes';
 
 const defaultState = {
   user: null,
@@ -26,6 +26,8 @@ function userReducer(state=defaultState, action) {
       return { ...state, user: {...state.user, events: [...state.user.events, action.payload.event]}}
     case DELETE_USER_EVENT:
       return { ...state, user: {...state.user, events: state.user.events.filter(event => event.id !== action.payload.event.id)}}
+    case SAVE_USER_TUTORIAL:
+      return { ...state, user: {...state.user, tutorials: [...state.user.tutorials, action.payload]}}
     default:
       return state
   }

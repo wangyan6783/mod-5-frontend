@@ -22,21 +22,6 @@ class ProfilePage extends Component {
     })
   }
 
-  renderBioButton = () => {
-    if (this.props.user.bio) {
-      return (
-        <Fragment>
-          <h2>Bio</h2>
-          {this.props.user.bio}
-        </Fragment>
-      )
-    } else if (this.state.showBioButton) {
-      return <Button onClick={this.showBioInput}>Add a bio</Button>;
-    } else {
-      return null;
-    }
-  }
-
   handleBioInput = (e, data) => {
     this.setState({bio: data.value})
   }
@@ -56,9 +41,9 @@ class ProfilePage extends Component {
     return (
       <label htmlFor="file-upload">
         <div className="profile-container">
-          <Image className="profile-image" size="small" circular src={this.props.user.avatar} arl="" />
+          <Image className="profile-image" size="medium" circular src={this.props.user.avatar} arl="" />
           <div className="profile-overlay overlay-fade">
-            <Image className="overlay-image" size="small" circular src={changeProfilePhoto} arl="" onClick={this.handleClick} />
+            <Image className="overlay-image" size="medium" circular src={changeProfilePhoto} arl="" onClick={this.handleClick} />
           </div>
         </div>
         <input id="file-upload" type="file" onChange={this.handleChange} />
@@ -66,23 +51,38 @@ class ProfilePage extends Component {
     )
   }
 
+  renderBioButton = () => {
+    if (this.props.user.bio) {
+      return (
+        <div className="bio-text">
+          <h2>Bio</h2>
+          <h4>{this.props.user.bio}</h4>
+        </div>
+      )
+    } else if (this.state.showBioButton) {
+      return <Button secondary onClick={this.showBioInput}>Add a bio</Button>;
+    } else {
+      return null;
+    }
+  }
+
   render(){
     return (
       <Fragment>
         <div className="page-margin">
-          <h2>{this.props.user.username}</h2>
+          <h1>{this.props.user.username}</h1>
           {this.renderAvatar()}
-          <div>{this.renderBioButton()}</div>
+          <div className="bio-button">{this.renderBioButton()}</div>
           {this.state.showBioInput ?
             <Fragment>
-              <Form onSubmit={this.handleAddBio}>
+              <Form className="bio-form" onSubmit={this.handleAddBio}>
                 <TextArea onChange={this.handleBioInput} value={this.state.bio} autoHeight placeholder='Add a bio' rows={2} />
-                <Button>Submit</Button>
+                <Button secondary>Submit</Button>
               </Form>
             </Fragment> : null}
-            <h2>My Events</h2>
+            <h2 className="text-margin">My Events</h2>
             <UserEvents events={this.props.user.events}/>
-            <h2>Saved Tutorials</h2>
+            <h2 className="text-margin">Saved Tutorials</h2>
             <UserTutorials tutorials={this.props.user.tutorials}/>
           </div>
       </Fragment>

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Map, TileLayer } from 'react-leaflet';
 import Resort from './Resort';
 import { fetchResorts } from '../store/actions/index';
-import resortMapBackground from '../images/resort-map-background.png';
 
 class ResortMap extends Component {
 
@@ -53,7 +52,6 @@ class ResortMap extends Component {
            />
          {this.props.resorts.map(resort => <Resort key={resort.id} resort={resort} />)}
          </Map>
-         <img className="resort-map-background" src={resortMapBackground} alt="" />
        </div>
      </Fragment>
     )

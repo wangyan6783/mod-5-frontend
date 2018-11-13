@@ -7,7 +7,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* background-image: url("./images/resort-map-background.png") */
 }
 
 code {
@@ -61,11 +60,6 @@ video {
   position: relative;
 }
 
-.resort-map-background {
-  height: 680px;
-  width: 1280px;
-}
-
 .resort-map {
   position: absolute;
   top: 0%;
@@ -98,6 +92,10 @@ video {
   margin: 3% 1%;
 }
 
+.resort-image {
+  margin: 3% auto;
+}
+
 /* resort detail page end */
 
 /* new event form start */
@@ -114,18 +112,15 @@ video {
 
 /* new event login start */
 
-.new-event-login .ui.small.modal>.header:not(.ui) {
-  margin-bottom: 15%;
-  text-align: center;
-}
-#new-event-login-btn-container {
-  display: flex;
-  justify-content: center;
+.new-event-login-btn-container {
+  position: absolute;
   margin: 5%;
 }
 
-.ui.inverted.black.button, .ui.inverted.black.buttons .button {
+.new-event-login .ui.inverted.grey.basic.button, .ui.inverted.grey.basic.buttons .button, .ui.inverted.grey.buttons .basic.button {
   margin: 20px;
+  position: relative;
+  left: 55%;
 }
 
 /* new event login end */

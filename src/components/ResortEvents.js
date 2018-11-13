@@ -1,6 +1,6 @@
 import React from 'react';
 import Event from './Event';
-import noEvents from '../images/no-events-available.png';
+import noEvents from '../images/no-events.png';
 
 const ResortEvents = (props) => {
     if (props.events.length !== 0) {
@@ -10,7 +10,7 @@ const ResortEvents = (props) => {
         </div>
       )
     } else {
-      return <img src={noEvents} alt="" className="resort-image" height="500px" width="760px" />
+      return <img src={noEvents} alt="" className="resort-image" height="450px" width="720px" />
     }
 }
 

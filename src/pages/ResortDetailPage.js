@@ -31,18 +31,19 @@ class ResortDetailPage extends Component {
     } else {
       return (
         <div className="new-event-login">
-            <Modal.Header icon='angle double right'><h2>Please login to create an event</h2></Modal.Header>
-            <div id="new-event-login-btn-container">
+            <Modal.Header icon='angle double right'><h2 className="text-center">Please login to create an event</h2></Modal.Header>
+            <div className="new-event-login-btn-container">
             <Modal.Actions>
               <Link to='/login'>
-                <Button color='black' inverted>
+                <Button basic color="grey" inverted>
                   <Icon name='checkmark' /> Login
                 </Button>
               </Link>
               <Link to='/signup'>
-                <Button color='black' inverted>
+                <Button basic color="grey" inverted>
                   <Icon name='checkmark' /> Signup
                 </Button>
+
               </Link>
             </Modal.Actions>
           </div>

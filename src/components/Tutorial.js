@@ -61,7 +61,6 @@ class Tutorial extends Component {
     return (
       <Card>
         <Modal trigger={this.renderThumbnail()} dimmer="blurring" basic size='small'>
-
           <Header><h2 className="text-center"><Icon name='youtube play' />{snippet.title}</h2></Header>
           <div className="responsive">
             <iframe title={id} width="560" height="315" src={videoUrl} frameBorder="0" allowFullScreen></iframe>

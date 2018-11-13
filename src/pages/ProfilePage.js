@@ -69,20 +69,22 @@ class ProfilePage extends Component {
   render(){
     return (
       <Fragment>
-        <h2>{this.props.user.username}</h2>
-        {this.renderAvatar()}
-        <div>{this.renderBioButton()}</div>
-        {this.state.showBioInput ?
-          <Fragment>
-            <Form onSubmit={this.handleAddBio}>
-              <TextArea onChange={this.handleBioInput} value={this.state.bio} autoHeight placeholder='Add a bio' rows={2} />
-              <Button>Submit</Button>
-            </Form>
-          </Fragment> : null}
-          <h2>My Events</h2>
-          <UserEvents events={this.props.user.events}/>
-          <h2>Saved Tutorials</h2>
-          <UserTutorials tutorials={this.props.user.tutorials}/>
+        <div className="page-margin">
+          <h2>{this.props.user.username}</h2>
+          {this.renderAvatar()}
+          <div>{this.renderBioButton()}</div>
+          {this.state.showBioInput ?
+            <Fragment>
+              <Form onSubmit={this.handleAddBio}>
+                <TextArea onChange={this.handleBioInput} value={this.state.bio} autoHeight placeholder='Add a bio' rows={2} />
+                <Button>Submit</Button>
+              </Form>
+            </Fragment> : null}
+            <h2>My Events</h2>
+            <UserEvents events={this.props.user.events}/>
+            <h2>Saved Tutorials</h2>
+            <UserTutorials tutorials={this.props.user.tutorials}/>
+          </div>
       </Fragment>
     )
   }

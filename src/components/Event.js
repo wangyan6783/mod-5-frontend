@@ -22,7 +22,7 @@ const Event = (props) => {
   				<div className="back">
   					<div className="inner">
   						<p>{users.length} People Going!</p>
-              <Button onClick={showDetails}>Detail</Button>
+              <Button secondary onClick={showDetails}>Detail</Button>
   					</div>
   				</div>
   			</div>

@@ -8,7 +8,7 @@ import { Button } from 'semantic-ui-react';
 const Resort = ({resort}) => {
 
   const icon = L.icon({
-      iconUrl: 'https://cdn2.iconfinder.com/data/icons/sport-glyphsporticons/340/alpineskiing-512.png',
+      iconUrl: 'https://res.cloudinary.com/dfosmeuuq/image/upload/v1542075827/hlmugmgnvxf80tewui3q.png',
       iconSize:     [25, 25],
       iconAnchor:   [0, 0],
       popupAnchor:  [0, 0]

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Card, Header, Modal } from 'semantic-ui-react';
+import { Card, Header, Modal, Icon } from 'semantic-ui-react';
 import { YoutubeAPIKey } from '../secretKeys';
 import youtubePlay from '../images/youtube-play.png';
 
@@ -39,7 +39,7 @@ class UserTutorial extends Component {
     return (
       <Card>
         <Modal trigger={this.renderThumbnail()} basic size='small'>
-          <Header icon='archive' content={title} />
+          <Header><h2 className="text-center"><Icon name='youtube play' />{title}</h2></Header>
           <div className="responsive">
             <iframe title={title} width="560" height="315" src={videoUrl} frameBorder="0" allowFullScreen></iframe>
           </div>

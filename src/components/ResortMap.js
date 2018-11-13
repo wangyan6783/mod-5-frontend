@@ -12,7 +12,7 @@ class ResortMap extends Component {
      lat: 0,
      lng: 0
    },
-   zoom: 1
+   zoom: 5
  }
 
   componentDidMount(){

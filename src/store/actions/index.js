@@ -286,6 +286,7 @@ export const updateProfilePhoto = (userId, file) => {
     })
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       updateBackendProfile(userId, data.secure_url)
       dispatch({type: UPDATE_PROFILE_PHOTO, payload: data.secure_url})
     })

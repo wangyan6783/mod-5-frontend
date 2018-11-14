@@ -12,7 +12,7 @@ class NewEventForm extends Component {
       <Form.Field>
         <label className="form-label">{field.label}</label>
         <input type="text" {...field.input} />
-        {field.meta.touched && field.meta.error ? <Label basic color='teal' pointing> {field.meta.error}</Label> : ""}
+        {field.meta.touched && field.meta.error ? <Label basic color='red' pointing> {field.meta.error}</Label> : ""}
       </Form.Field>
     )
   }
@@ -39,7 +39,7 @@ class NewEventForm extends Component {
         <Field name="title" label="Title" component={this.renderInputField} />
         <Field name="date" label="Date" component={this.renderInputField} />
         <Field name="description" component={this.renderDescriptionField} />
-        <Button type='submit' color="teal">Submit</Button>
+        <Button type='submit' basic color="grey" inverted>Submit</Button>
       </Form>
     )
   }

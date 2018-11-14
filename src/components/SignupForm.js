@@ -46,7 +46,7 @@ class SignupForm extends React.Component {
               value={this.state.password}
             />
 
-          <Button secondary type="submit">Signup</Button>
+          <Button secondary type="submit">Sign up</Button>
         </Form>
 
     )

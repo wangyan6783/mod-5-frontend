@@ -42,6 +42,7 @@ class ChatContainer extends Component {
   }
 
   handleSubmit = () => {
+    debugger
     this.state.currentUser.sendMessage({
       text: this.state.message,
       roomId: this.props.event.chat_room_id

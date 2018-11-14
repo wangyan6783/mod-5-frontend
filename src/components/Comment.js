@@ -16,12 +16,14 @@ class Comment extends Component {
     return(
       <Fragment>
         <List.Item>
-          <Image avatar src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
           <List.Content>
-            <List.Header >{this.props.comment.user.username}</List.Header>
+            <Image avatar size="mini" src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
+            <List.Header><h3 className="margin-text">{this.props.comment.user.username}</h3>
+              <Icon name="heart" color="red" size="large" onClick={this.handleLike}/>
+              <h3 className="inline-text">{this.state.likes} likes </h3>
+            </List.Header>
             <List.Description>
-              <Icon name="heart" color="red" onClick={this.handleLike}/>
-              <h4 className="like-text">{this.state.likes} likes </h4> {this.props.comment.content}
+              <h4 className="inline-text">{this.props.comment.content}</h4>
             </List.Description>
           </List.Content>
         </List.Item>

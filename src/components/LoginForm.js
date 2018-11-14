@@ -47,7 +47,7 @@ class LoginForm extends React.Component {
               value={this.state.password}
             />
 
-          <Button secondary type="submit">Login</Button>
+          <Button secondary type="submit">Log in</Button>
         </Form>
 
     )

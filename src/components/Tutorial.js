@@ -21,7 +21,7 @@ class Tutorial extends Component {
     } else if (this.props.user.tutorials.find(tutorial => tutorial.video_id === this.props.tutorial.id.videoId)) {
       // current user already saved this video
       return (
-        <Button color='teal'>
+        <Button color='youtube'>
           <Icon name='envelope outline' /> Saved
         </Button>
       )
@@ -55,7 +55,9 @@ class Tutorial extends Component {
             <iframe title={id} width="560" height="315" src={videoUrl} frameBorder="0" allowFullScreen></iframe>
           </div>
           <Modal.Actions>
-            {this.renderSaveBtn()}
+            <div className="tutorial-save-button">
+              {this.renderSaveBtn()}
+            </div>
           </Modal.Actions>
         </Modal>
 

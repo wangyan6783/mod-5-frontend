@@ -27,7 +27,7 @@ class EventList extends Component {
 
   render(){
     return (
-      <div id="events-container" className="wrapper">
+      <div id="events-container" className="wrapper event-list">
           <h1>Events</h1>
           <div className="cols">
             {this.renderEvents().map(event => <Event key={event.id} event={event} />)}

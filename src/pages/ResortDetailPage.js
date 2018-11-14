@@ -20,13 +20,13 @@ class ResortDetailPage extends Component {
   renderModal = () => {
     if (this.props.loggedIn) {
       return (
-        <Fragment>
+        <div className="new-event">
           <Modal.Header><h2 className="text-center">Create an event</h2></Modal.Header>
 
           <Modal.Content>
             <NewEventForm resortId={this.props.match.params.id} hostId={this.props.user.id} />
           </Modal.Content>
-        </Fragment>
+        </div>
       )
     } else {
       return (

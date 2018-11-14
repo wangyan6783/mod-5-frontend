@@ -104,13 +104,23 @@ video {
 /* resort detail page end */
 
 /* new event form start */
+
+.new-event {
+  margin-bottom: 15%;
+}
+
+.new-event-form {
+  margin-top: 5%;
+}
+
 .ui.form .field>label {
   color: white;
 }
 
-.new-event-form .ui.teal.button, .ui.teal.buttons .button {
+.new-event-form .ui.inverted.grey.basic.button, .ui.inverted.grey.basic.buttons .button, .ui.inverted.grey.buttons .basic.button {
   display: block;
-  margin: 6% auto;
+  margin-top: 8%;
+  margin-left: 34%;
   width: 30%;
 }
 /* new event form end */
@@ -157,6 +167,11 @@ video {
   margin: 3% auto;
 }
 
+/* flip card button */
+/* .event-list .ui.inverted.grey.basic.button, .ui.inverted.grey.basic.buttons .button, .ui.inverted.grey.buttons .basic.button {
+  margin-right: 20%
+} */
+
 /* events page end */
 
 /* event detail page start */
@@ -169,8 +184,12 @@ video {
   display: inline-block;
 }
 
-.like-text {
+.inline-text {
   display: inline;
+}
+
+.margin-text {
+  margin: 1%;
 }
 
 .ui[class*="very relaxed"].list:not(.horizontal)>.item:not(:last-child) {
@@ -181,7 +200,6 @@ video {
   margin: 3%;
   width: 15%;
 }
-
 
 /* chat component start */
 
@@ -229,7 +247,7 @@ video {
 
 .tutorial-thumbnail-overlay {
   position: absolute;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.3);
   top: 0;
   bottom: 0;
   height: 100%;
@@ -250,14 +268,14 @@ video {
 }
 
 /* save button */
-.ui.inverted.grey.basic.button, .ui.inverted.grey.basic.buttons .button, .ui.inverted.grey.buttons .basic.button {
+.tutorial-save-button .ui.inverted.grey.basic.button, .ui.inverted.grey.basic.buttons .button, .ui.inverted.grey.buttons .basic.button {
   position: absolute;
   left: 44%;
   top: 100%;
 }
 
 /* save button */
-.ui.modal .actions>.button {
+.ui.youtube.button {
   position: absolute;
   left: 44%;
   top: 100%;

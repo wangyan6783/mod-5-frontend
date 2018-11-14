@@ -6,12 +6,14 @@ import homepageOverlay from '../images/homepage-overlay.png';
 const HomePage = () => {
   return (
     <Fragment>
-      <div className="homepage-video">
-        <video loop autoPlay>
-           <source src={homepageVideo} type="video/mp4" />
-        </video>
-        <img className="homevideo-overlay" src={homepageOverlay} />
-      </div>
+      <div className="homepage">
+        <div className="homepage-video">
+          <video loop autoPlay>
+             <source src={homepageVideo} type="video/mp4" />
+          </video>
+          <img className="homevideo-overlay" src={homepageOverlay} />
+        </div>
+     </div>
     </Fragment>
   )
 }

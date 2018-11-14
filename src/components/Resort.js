@@ -8,7 +8,7 @@ import { Button } from 'semantic-ui-react';
 const Resort = ({resort}) => {
 
   const icon = L.icon({
-      iconUrl: 'https://res.cloudinary.com/dfosmeuuq/image/upload/v1542075827/hlmugmgnvxf80tewui3q.png',
+      iconUrl: 'https://res.cloudinary.com/dfosmeuuq/image/upload/v1542167891/mzpnkixnq2qhir8l0e02.png',
       iconSize:     [25, 25],
       iconAnchor:   [0, 0],
       popupAnchor:  [0, 0]

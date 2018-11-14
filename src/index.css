@@ -30,6 +30,11 @@ img {
 /* nav bar end */
 
 /* homepage start */
+
+.homepage {
+  position: relative;
+}
+
 .homepage-video {
   height: 720px;
   width: 1280px;
@@ -48,7 +53,7 @@ video {
   opacity: 0.3;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -4%;
   height: 100%;
   z-index: 10;
 
@@ -111,16 +116,20 @@ video {
 /* new event form end */
 
 /* new event login start */
+.new-event-login {
+  margin-bottom: 30%;
+}
 
 .new-event-login-btn-container {
   position: absolute;
   margin: 5%;
+  margin-top: 15%;
 }
 
 .new-event-login .ui.inverted.grey.basic.button, .ui.inverted.grey.basic.buttons .button, .ui.inverted.grey.buttons .basic.button {
   margin: 20px;
   position: relative;
-  left: 55%;
+  left: 58%;
 }
 
 /* new event login end */
@@ -229,11 +238,10 @@ video {
 }
 
 .youtube-play {
-  opacity: 0.7;
   position: absolute;
-  height: 70%;
-  width: 78%;
-  margin: 30px;
+  height: 40%;
+  width: 40%;
+  margin: 18% 30%;
   z-index: 10;
 }
 

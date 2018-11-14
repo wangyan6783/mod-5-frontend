@@ -26,51 +26,54 @@ img {
 /* nav bar start */
 .ui.inverted.segment, .ui.primary.inverted.segment {
   margin-bottom: 0;
+  z-index: 20;
 }
 /* nav bar end */
 
 /* homepage start */
 
-.homepage {
-  position: relative;
-}
-
 .homepage-video {
-  height: 720px;
-  width: 1280px;
+  height: 900px;
+  width: 1600px;
   position: relative;
   z-index: 2;
 }
 
 video {
+  width: 110%;
   position: absolute;
   bottom: 0;
   left: -10%;
   z-index: 5;
 }
 
-.homevideo-overlay {
+.homepage-overlay {
+  display: flex;
+}
+
+.homepage-overlay img {
   opacity: 0.3;
   position: absolute;
-  top: 0;
-  left: -4%;
+  top: 5%;
+  width: 100%;
   height: 100%;
+  /* margin: auto; */
   z-index: 10;
-
 }
 
 /* homepage end */
 /* resort map start */
 .resort-map-container {
   position: relative;
+  display: flex;
 }
 
 .resort-map {
   position: absolute;
   top: 0%;
   left: 0%;
-  height: 680px;
-  width: 1500px;
+  height: 820px;
+  width: 100%;
 }
 
 /* resort map end */
@@ -210,7 +213,7 @@ video {
   position: -webkit-sticky;
   top: 200px;
   bottom: 20px;
-  left: 800px;
+  left: 70%;
 }
 
 .chat-list {

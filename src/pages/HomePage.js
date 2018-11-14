@@ -11,7 +11,7 @@ const HomePage = () => {
           <video loop autoPlay>
              <source src={homepageVideo} type="video/mp4" />
           </video>
-          <img className="homevideo-overlay" src={homepageOverlay} />
+          <img className="homevideo-overlay" src={homepageOverlay} alt="snow hub homepage" />
         </div>
      </div>
     </Fragment>

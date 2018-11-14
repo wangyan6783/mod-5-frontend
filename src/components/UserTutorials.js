@@ -13,7 +13,7 @@ const UserTutorials = (props) => {
       </Fragment>
     )
   } else {
-    return <img src={noTutorials} width="720px" height="400px"/>
+    return <img src={noTutorials} alt="this user does not have any saved tutorials" width="720px" height="400px"/>
   }
 }
 

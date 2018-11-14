@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Card, Icon, Button, Header, Modal, Popup } from 'semantic-ui-react';
 import { saveTutorial } from '../store/actions/index';

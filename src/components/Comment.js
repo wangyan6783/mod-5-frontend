@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import { Image, Header, Icon, Button, List } from 'semantic-ui-react';
+import { Image, Icon, List } from 'semantic-ui-react';
 import { updateLikes } from '../store/actions/index';
 
 

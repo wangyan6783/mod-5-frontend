@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import ResortEvents from '../components/ResortEvents';
 import NewEventForm from '../components/NewEventForm';
-import { Button, Header, Modal, Icon } from 'semantic-ui-react';
+import { Button, Modal, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 

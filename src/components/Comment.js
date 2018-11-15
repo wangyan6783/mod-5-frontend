@@ -17,7 +17,7 @@ class Comment extends Component {
       <Fragment>
         <List.Item>
           <List.Content>
-            <Image avatar size="mini" src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
+            <Image avatar size="mini" src={this.props.comment.user.avatar} />
             <List.Header><h3 className="margin-text">{this.props.comment.user.username}</h3>
               <Icon name="heart" color="red" size="large" onClick={this.handleLike}/>
               <h3 className="inline-text">{this.state.likes} likes </h3>
@@ -34,12 +34,3 @@ class Comment extends Component {
 }
 
 export default Comment
-
-
-// <Header as='h3'>
-//   <Image circular src='https://react.semantic-ui.com/images/avatar/large/patrick.png' /><br/>
-//
-//   {this.props.comment.content} {this.state.likes} likes
-//   <Button onClick={this.handleLike}><Icon name='heart' color="red" /></Button>
-//
-// </Header>

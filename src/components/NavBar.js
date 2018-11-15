@@ -12,7 +12,6 @@ class NavBar extends Component {
   }
 
   handleItemClick = (e, {name}) => {
-    // debugger
     this.setState({ activeItem: name })
     if (name === "/logout"){
       localStorage.removeItem("jwt");

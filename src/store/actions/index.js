@@ -47,7 +47,7 @@ export const updateSort = (type) => {
 
 export const updateTutorialSelect = (searchTerm) => {
 
-  const endPoint = `https://www.googleapis.com/youtube/v3/search?key=${YoutubeAPIKey}&q=${searchTerm}&maxResults=45&type=video&part=snippet&order=viewCount`
+  const endPoint = `https://www.googleapis.com/youtube/v3/search?key=${YoutubeAPIKey}&q=${searchTerm}&maxResults=30&type=video&part=snippet&order=viewCount`
   // const endPoint = `https://www.googleapis.com/youtube/v3/videos?id=V9xuy-rVj9w&key=${YOUTUBE_API_KEY}&part=snippet,contentDetails,statistics,status`
 
   return (dispatch) => {

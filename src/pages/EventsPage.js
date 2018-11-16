@@ -6,10 +6,9 @@ import EventSort from '../components/EventSort';
 const EventsPage = () => {
   return (
     <Fragment>
-      <EventSearch /><br/>
+      <EventSearch />
       <EventSort />
       <EventList />
-
     </Fragment>
   )
 }

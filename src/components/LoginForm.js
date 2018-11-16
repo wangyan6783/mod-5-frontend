@@ -22,7 +22,7 @@ class LoginForm extends React.Component {
       <Redirect to="/profile" />
     ) : (
 
-        <Form
+        <Form className="login-signup-form"
           onSubmit={this.handleLoginSubmit}
           size="mini"
           key="mini"
@@ -46,8 +46,8 @@ class LoginForm extends React.Component {
               onChange={this.handleChange}
               value={this.state.password}
             />
-    
-          <Button type="submit">Login</Button>
+
+          <Button secondary type="submit">Log in</Button>
         </Form>
 
     )

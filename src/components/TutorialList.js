@@ -7,14 +7,14 @@ import { updateTutorialSelect } from '../store/actions/index';
 class TutorialList extends Component {
 
   componentDidMount(){
-    this.props.dispatch(updateTutorialSelect("snowboard tricks"))
+    this.props.updateTutorialSelect("snowboard tricks")
   }
 
   render(){
     return (
       <Fragment>
         <Card.Group itemsPerRow={3}>
-        {this.props.tutorials.items ? this.props.tutorials.items.map(tutorial => <Tutorial key={tutorial.id.videoId} tutorial={tutorial}/>) : null}
+        {this.props.tutorials.items ? this.props.tutorials.items.map(tutorial => <Tutorial key={tutorial.etag} tutorial={tutorial}/>) : null}
         </Card.Group>
       </Fragment>
     )
@@ -27,4 +27,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(TutorialList)
+export default connect(mapStateToProps, { updateTutorialSelect })(TutorialList)

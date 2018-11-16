@@ -6,7 +6,7 @@ import { updateSearch } from '../store/actions/index';
 const EventSearch = (props) => {
   return (
     <label>
-      <Input className="event-search" onChange={e => props.dispatch(updateSearch(e.target.value))} size='large' icon='search' placeholder='Search...' />
+      <Input onChange={e => props.dispatch(updateSearch(e.target.value))} size='large' icon='search' placeholder='Search...' />
     </label>
   )
 }

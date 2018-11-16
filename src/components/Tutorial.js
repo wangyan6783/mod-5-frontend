@@ -36,12 +36,12 @@ class Tutorial extends Component {
   }
 
   renderThumbnail = () => {
-    const thumbnails = [ "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296723/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.39.57_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296723/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.43.45_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296369/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.32.12_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296367/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.29.57_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296367/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.19.45_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296367/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.21.19_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296366/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.16.52_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296366/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.15.22_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296366/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.13.46_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303692/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.33.58_PM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303692/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.39.47_PM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303692/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.38.09_PM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303692/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.35.48_PM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303692/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.27.43_PM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303694/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.29.20_PM.png"]
+
     return (
-        <div className="tutorial-thumbnail" style={{backgroundImage: `url(${thumbnails[Math.floor(Math.random()*thumbnails.length)]})`}}>
-          <div className="tutorial-thumbnail-overlay"></div>
-          <img src={youtubePlay} className="youtube-play" alt="" />
-        </div>
+      <div className="tutorial-thumbnail" style={{backgroundImage: `url(${this.props.tutorial.snippet.thumbnails.medium.url})`}}>
+        <div className="tutorial-thumbnail-overlay"></div>
+        <img src={youtubePlay} className="youtube-play" alt="" />
+      </div>
     )
   }
 
@@ -80,4 +80,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { saveTutorial })(Tutorial);
 
-// <div className="tutorial-thumbnail" style={{backgroundImage: `url(${this.props.tutorial.snippet.thumbnails.medium.url})`}}>
+  // const thumbnails = [ "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296723/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.39.57_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296723/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.43.45_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296369/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.32.12_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296367/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.29.57_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296367/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.19.45_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296367/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.21.19_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296366/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.16.52_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296366/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.15.22_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542296366/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_10.13.46_AM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303692/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.33.58_PM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303692/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.39.47_PM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303692/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.38.09_PM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303692/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.35.48_PM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303692/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.27.43_PM.png", "https://res.cloudinary.com/dfosmeuuq/image/upload/v1542303694/Tutorial%20Thumbnails/Screen_Shot_2018-11-15_at_12.29.20_PM.png"]
+  //
+  // <div className="tutorial-thumbnail" style={{backgroundImage: `url(${thumbnails[Math.floor(Math.random()*thumbnails.length)]})`}}>

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Form, Button, TextArea, Label, Popup } from 'semantic-ui-react'
+import { backendEndpoint } from '../secretKeys';
 
 
 class CommentForm extends Component {
@@ -19,7 +20,7 @@ class CommentForm extends Component {
 
   onSubmit = (values) => {
     if (this.props.user) {
-      fetch("http://localhost:3001/api/v1/comments", {
+      fetch(`${backendEndpoint}/comments`, {
         method: "POST",
         headers: {
           "Accept": 'application/json',

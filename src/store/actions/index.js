@@ -1,5 +1,5 @@
 import { ADD_EVENTS, ADD_USER_EVENT, DELETE_USER_EVENT, SET_CURRENT_EVENT, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, SAVE_USER_TUTORIAL, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN, UPDATE_BIO, UPDATE_PROFILE_PHOTO } from './actionTypes';
-import { YoutubeAPIKey, cloudinaryUrl, cloudinaryUploadPreset } from '../../secretKeys';
+import { YoutubeAPIKey, cloudinaryUrl, cloudinaryUploadPreset, backendEndpoint } from '../../secretKeys';
 
 export const addEvents = (events) => {
   return {
@@ -10,7 +10,7 @@ export const addEvents = (events) => {
 
 export const fetchEvents = () => {
   return (dispatch) => {
-    fetch("http://localhost:3001/api/v1/events")
+    fetch(`${backendEndpoint}/events`)
     .then(response => response.json())
     .then(events => dispatch(addEvents(events)))
   }
@@ -25,7 +25,7 @@ export const addResorts = (resorts) => {
 
 export const fetchResorts = () => {
   return (dispatch) => {
-    fetch("http://localhost:3001/api/v1/resorts")
+    fetch(`${backendEndpoint}/resorts`)
     .then(response => response.json())
     .then(resorts => dispatch(addResorts(resorts)))
   }
@@ -58,7 +58,7 @@ export const updateTutorialSelect = (searchTerm) => {
 }
 
 export const createEvent = (values, resortId, hostId, redirectCb) => {
-  fetch("http://localhost:3001/api/v1/events", {
+  fetch(`${backendEndpoint}/events`, {
     method: "POST",
     headers: {
       "Accept": 'application/json',
@@ -91,7 +91,7 @@ export const setCurrentEvent = (event) => {
 
 export const addUserEvent = (event, user) => {
     return dispatch => {
-      fetch("http://localhost:3001/api/v1/user_events", {
+      fetch(`${backendEndpoint}/user_events`, {
         method: "POST",
         headers: {
           "Accept": 'application/json',
@@ -115,7 +115,7 @@ export const addUserEvent = (event, user) => {
 
 export const deleteUserEvent = (userEvent, event, user) => {
   return dispatch => {
-    fetch(`http://localhost:3001/api/v1/user_events/${userEvent.id}`, {
+    fetch(`${backendEndpoint}/user_events/${userEvent.id}`, {
       method: "DELETE"
     })
     .then(response => response.json())
@@ -128,7 +128,7 @@ export const deleteUserEvent = (userEvent, event, user) => {
 }
 
 export const updateLikes = (commentId, like_count) => {
-  fetch(`http://localhost:3001/api/v1/comments/${commentId}`, {
+  fetch(`${backendEndpoint}/comments/${commentId}`, {
     method: "PATCH",
       headers: {
         "Accept": "application/json",
@@ -144,7 +144,7 @@ export const updateLikes = (commentId, like_count) => {
 
 export const saveTutorial = (videoId, userId) => {
   return (dispatch) => {
-      fetch("http://localhost:3001/api/v1/tutorials", {
+      fetch(`${backendEndpoint}/tutorials`, {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -160,7 +160,7 @@ export const saveTutorial = (videoId, userId) => {
       .then(tutorial => {
         dispatch({type: SAVE_USER_TUTORIAL, payload: tutorial})
         console.log(tutorial)
-        fetch("http://localhost:3001/api/v1/user_tutorials", {
+        fetch(`${backendEndpoint}/user_tutorials`, {
           method: "POST",
           headers: {
             "Accept": "application/json",
@@ -183,7 +183,7 @@ export const saveTutorial = (videoId, userId) => {
 export const loginUser = (username, password) => {
   return (dispatch) => {
     dispatch({ type: AUTHENTICATING_USER })
-    fetch("http://localhost:3001/api/v1/login", {
+    fetch(`${backendEndpoint}/login`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -218,7 +218,7 @@ export const loginUser = (username, password) => {
 export const signupUser = (username, password) => {
   return (dispatch) => {
     dispatch({ type: AUTHENTICATING_USER })
-    fetch("http://localhost:3001/api/v1/users", {
+    fetch(`${backendEndpoint}/users`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -253,7 +253,7 @@ export const signupUser = (username, password) => {
 export const fetchCurrentUser = () => {
   return dispatch => {
     dispatch({ type: AUTHENTICATING_USER })
-    fetch("http://localhost:3001/api/v1/profile", {
+    fetch(`${backendEndpoint}/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -266,7 +266,7 @@ export const fetchCurrentUser = () => {
 }
 
 export const updateBackendProfile = (userId, avatarUrl) => {
-  fetch(`http://localhost:3001/api/v1/users/${userId}`, {
+  fetch(`${backendEndpoint}/users/${userId}`, {
     method: "PATCH",
     headers: {
       "Accept": "application/json",
@@ -301,7 +301,7 @@ export const updateProfilePhoto = (userId, file) => {
 
 export const addBio = (userId, bio) => {
   return dispatch => {
-    fetch(`http://localhost:3001/api/v1/users/${userId}`, {
+    fetch(`${backendEndpoint}/users/${userId}`, {
       method: "PATCH",
       headers: {
         "Accept": "application/json",

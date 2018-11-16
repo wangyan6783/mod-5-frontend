@@ -4,6 +4,7 @@ import NewEventForm from '../components/NewEventForm';
 import { Button, Modal, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { backendEndpoint } from '../secretKeys';
 
 class ResortDetailPage extends Component {
 
@@ -12,7 +13,7 @@ class ResortDetailPage extends Component {
   }
 
   componentDidMount(){
-    fetch(`http://localhost:3001/api/v1/resorts/${this.props.match.params.id}`)
+    fetch(`${backendEndpoint}/resorts/${this.props.match.params.id}`)
     .then(response => response.json())
     .then(resort => this.setState({resort}))
   }

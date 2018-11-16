@@ -4,6 +4,7 @@ import { Button, Popup, Icon } from 'semantic-ui-react';
 import { addUserEvent, deleteUserEvent, setCurrentEvent } from '../store/actions/index';
 import CommentContainer from '../components/CommentContainer';
 import ChatContainer from '../components/ChatContainer';
+import { backendEndpoint } from '../secretKeys';
 
 class ResortDetailPage extends Component {
 
@@ -13,7 +14,7 @@ class ResortDetailPage extends Component {
   }
 
   componentDidMount(){
-    fetch(`http://localhost:3001/api/v1/events/${this.props.match.params.id}`)
+    fetch(`${backendEndpoint}/events/${this.props.match.params.id}`)
     .then(response => response.json())
     .then(event => {
       this.props.setCurrentEvent(event)

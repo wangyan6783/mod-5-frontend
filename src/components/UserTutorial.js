@@ -19,7 +19,7 @@ class UserTutorial extends Component {
     .then(video => this.setState({
       thumbnail: video.items[0].snippet.thumbnails.medium.url,
       title: video.items[0].snippet.title,
-      videoUrl: `http://www.youtube.com/embed/${this.props.tutorial.video_id}?rel=0&autoplay=1`,
+      videoUrl: `https://www.youtube.com/embed/${this.props.tutorial.video_id}?rel=0&autoplay=1`,
       publishedAt: video.items[0].snippet.publishedAt.split("T")[0],
       description: video.items[0].snippet.description
     }))

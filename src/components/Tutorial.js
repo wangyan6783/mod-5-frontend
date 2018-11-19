@@ -47,7 +47,7 @@ class Tutorial extends Component {
 
   render() {
     const { id, snippet } = this.props.tutorial
-    const videoUrl = `http://www.youtube.com/embed/${id.videoId}?rel=0&autoplay=1`;
+    const videoUrl = `https://www.youtube.com/embed/${id.videoId}?rel=0&autoplay=1`;
     return (
       <Card>
         <Modal trigger={this.renderThumbnail()} basic size='small'>

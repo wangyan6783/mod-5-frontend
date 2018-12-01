@@ -52,3 +52,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(ResortMap);
+
+// 'https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}'

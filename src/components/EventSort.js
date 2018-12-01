@@ -8,17 +8,17 @@ const EventSort = (props) => {
       {
         text: 'All',
         value: '',
-        image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
+        icon: 'add'
       },
       {
         text: 'Event Date',
         value: 'Event Date',
-        image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
+        icon: 'calendar alternate'
       },
       {
         text: 'Number of People Going',
         value: 'Number of People Going',
-        image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
+        icon: 'user'
       },
     ]
 

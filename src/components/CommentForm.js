@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { Form, Button, TextArea } from 'semantic-ui-react'
+import { Form, Button, TextArea, Label, Popup } from 'semantic-ui-react'
+import { backendEndpoint } from '../secretKeys';
 
 
 class CommentForm extends Component {
@@ -11,36 +13,39 @@ class CommentForm extends Component {
         <label>{field.label}</label>
         <TextArea type={field.type} style={{width: '45%'}} {...field.input} />
         <br/>
-        {field.meta.touched ? field.meta.error : ""}
+        {field.meta.touched && field.meta.error ? <Label basic color='red' pointing> {field.meta.error}</Label> : ""}
       </Form.Field>
     )
   }
 
   onSubmit = (values) => {
-    fetch("http://localhost:3001/api/v1/comments", {
-      method: "POST",
-      headers: {
-        "Accept": 'application/json',
-        "Content-Type": 'application/json'
-      },
-      body: JSON.stringify({
-        comment: {
-          content: values.comment,
-          event_id: this.props.eventId,
-          user_id: 175,
-          like_count: 0
-        }
+    if (this.props.user) {
+      fetch(`${backendEndpoint}/comments`, {
+        method: "POST",
+        headers: {
+          "Accept": 'application/json',
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+          comment: {
+            content: values.comment,
+            event_id: this.props.eventId,
+            user_id: this.props.user.id,
+            like_count: 0
+          }
+        })
       })
-    })
-    .then(response => response.json())
-    .then(comment => this.props.addComment(comment))
+      .then(response => response.json())
+      .then(comment => this.props.addComment(comment))
+    }
   }
+
   render(){
     return(
       <Fragment>
         <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <Field name="comment" label="Add a comment" type="text" component={this.renderInputField} />
-          <Button type='submit'>Submit</Button>
+          {this.props.user ? <Button secondary type='submit'>Submit</Button> : <Popup trigger={<Button secondary>Submit</Button>} content="Please login to add a comment" />}
         </Form>
       </Fragment>
     )
@@ -55,7 +60,11 @@ function validate(values) {
   return errors;
 }
 
-export default reduxForm({
+const mapStateToProps = state => ({
+  user: state.userReducer.user
+})
+
+export default connect(mapStateToProps)(reduxForm({
   validate,
   form: "CommentForm"
-})(CommentForm)
+})(CommentForm))

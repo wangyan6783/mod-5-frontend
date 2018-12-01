@@ -21,7 +21,7 @@ class SignupForm extends React.Component {
     return this.props.loggedIn ? (
       <Redirect to="/profile" />
     ) : (
-        <Form
+        <Form className="login-signup-form"
           onSubmit={this.handleLoginSubmit}
           size="mini"
           key="mini"
@@ -46,7 +46,7 @@ class SignupForm extends React.Component {
               value={this.state.password}
             />
 
-          <Button type="submit">Signup</Button>
+          <Button secondary type="submit">Sign up</Button>
         </Form>
 
     )

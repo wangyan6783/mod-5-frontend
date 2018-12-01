@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Label } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createEvent } from '../store/actions/index';
@@ -10,9 +10,9 @@ class NewEventForm extends Component {
   renderInputField = (field) => {
     return (
       <Form.Field>
-        <label>{field.label}</label>
-        <input type="text"  placeholder={field.label} {...field.input} />
-        {field.meta.touched ? field.meta.error : ""}
+        <label className="form-label">{field.label}</label>
+        <input type="text" {...field.input} />
+        {field.meta.touched && field.meta.error ? <Label basic color='red' pointing> {field.meta.error}</Label> : ""}
       </Form.Field>
     )
   }
@@ -21,25 +21,25 @@ class NewEventForm extends Component {
     return (
       <Form.Field>
         <label>Description</label>
-        <textarea type="text"  placeholder="Description" {...field.input} />
+        <textarea type="text" {...field.input} />
         {field.meta.touched ? field.meta.error : ""}
       </Form.Field>
     )
   }
 
   onSubmit = (values) => {
-    createEvent(values, this.props.resortId, (url) => {
+    createEvent(values, this.props.resortId, this.props.hostId, (url) => {
       this.props.history.push(url)
     });
   }
 
   render(){
     return(
-      <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+      <Form className="new-event-form" onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field name="title" label="Title" component={this.renderInputField} />
         <Field name="date" label="Date" component={this.renderInputField} />
         <Field name="description" component={this.renderDescriptionField} />
-        <Button type='submit'>Submit</Button>
+        <Button type='submit' basic color="grey" inverted>Submit</Button>
       </Form>
     )
   }

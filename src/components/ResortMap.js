@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Map, TileLayer } from 'react-leaflet';
 import Resort from './Resort';
@@ -11,7 +11,7 @@ class ResortMap extends Component {
      lat: 0,
      lng: 0
    },
-   zoom: 1
+   zoom: 5
  }
 
   componentDidMount(){
@@ -22,20 +22,7 @@ class ResortMap extends Component {
         location: {
           lat: position.coords.latitude,
           lng: position.coords.longitude
-        },
-        zoom: 5
-      })
-    }, () => {
-      fetch("https://ipapi.co/json")
-      .then(response => response.json())
-      .then(location => {
-        this.setState({
-          location: {
-            lat: location.latitude,
-            lng: location.longitude
-          },
-          zoom: 5
-        })
+        }
       })
     })
   }
@@ -44,13 +31,16 @@ class ResortMap extends Component {
     const position = [this.state.location.lat, this.state.location.lng]
 
     return (
-      <Map className="resort-map" center={position} zoom={this.state.zoom}>
-       <TileLayer
-         attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-       />
-     {this.props.resorts.map(resort => <Resort key={resort.id} resort={resort} />)}
-     </Map>
+      <Fragment>
+        <div className="resort-map-container">
+          <Map className="resort-map" center={position} zoom={this.state.zoom}>
+            <TileLayer
+             url='https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
+           />
+         {this.props.resorts.map(resort => <Resort key={resort.id} resort={resort} />)}
+         </Map>
+       </div>
+     </Fragment>
     )
   }
 }

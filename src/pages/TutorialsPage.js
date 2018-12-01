@@ -5,8 +5,10 @@ import TutorialList from '../components/TutorialList';
 const TutorialsPage = () => {
   return (
     <Fragment>
-      <TutorialSelect />
-      <TutorialList />
+      <div className="page-margin">
+        <TutorialSelect />
+        <TutorialList />
+      </div>
     </Fragment>
   )
 }

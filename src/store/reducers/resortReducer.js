@@ -9,7 +9,7 @@ function resortReducer(state=defaultState, action) {
     case ADD_RESORTS:
       return {...state, resorts: action.payload}
     default:
-      return state
+      return state;
 
   }
 }

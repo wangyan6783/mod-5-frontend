@@ -9,7 +9,7 @@ function turotialReducer(state=defaultState, action) {
     case UPDATE_TUTORIAL_SELECT:
       return {...state, tutorials: action.payload}
     default:
-      return state
+      return state;
   }
 }
 

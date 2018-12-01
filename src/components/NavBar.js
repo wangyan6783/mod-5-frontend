@@ -8,12 +8,12 @@ class NavBar extends Component {
   state = { activeItem: '/home' }
 
   componentDidMount(){
-    if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentUser()
+    if (localStorage.getItem('jwt') && !this.props.user) this.props.fetchCurrentUser()
   }
 
-  handleItemClick = (e, { name }) => {
+  handleItemClick = (e, {name}) => {
     this.setState({ activeItem: name })
-    if (e.target.innerText === "Logout"){
+    if (name === "/logout"){
       localStorage.removeItem("jwt");
       window.location.href = "http://localhost:3000/";
     }
@@ -22,7 +22,7 @@ class NavBar extends Component {
 
   renderLoginProfile = () => {
     const { activeItem } = this.state
-    if (this.props.loggedIn) {
+    if (this.props.user) {
       return (
         <Fragment>
           <Menu.Item
@@ -45,9 +45,22 @@ class NavBar extends Component {
     }
   }
 
+  renderUserName = () => {
+    if (this.props.user) {
+      return (
+        <Menu.Item
+          name={`Welcome ${this.props.user.username}`}
+          position="right"/>
+      )
+    } else {
+      return null;
+    }
+  }
+
   render() {
     const { activeItem } = this.state
 
+    console.log(this.props.user)
     return (
       <Segment inverted>
         <Menu inverted pointing secondary>
@@ -68,6 +81,7 @@ class NavBar extends Component {
               active={activeItem === '/tutorials'}
               onClick={this.handleItemClick} />
             {this.renderLoginProfile()}
+            {this.renderUserName()}
         </Menu>
       </Segment>
     )
@@ -75,7 +89,7 @@ class NavBar extends Component {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.userReducer.loggedIn
+  user: state.userReducer.user
 })
 
 export default withRouter(connect(mapStateToProps, { fetchCurrentUser })(NavBar));

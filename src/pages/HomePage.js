@@ -8,16 +8,14 @@ const HomePage = () => {
     <Fragment>
         <div className="homepage">
           <div className="video-wrapper">
-          <video loop autoPlay>
-             <source src={homepageVideo} />
-          </video>
-
-          <img src={homepageOverlay} alt="snow hub homepage" />
+          <video src={homepageVideo} autoPlay="true" loop="true"></video>
         </div>
+        <img src={homepageOverlay} alt="snow hub homepage" />
         </div>
-
     </Fragment>
   )
 }
 
 export default HomePage
+
+// <source src={homepageVideo} />

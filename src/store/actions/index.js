@@ -1,7 +1,7 @@
 import { ADD_EVENTS, ADD_USER_EVENT, DELETE_USER_EVENT, SET_CURRENT_EVENT, ADD_RESORTS, UPDATE_SEARCH, UPDATE_SORT, UPDATE_TUTORIAL_SELECT, SAVE_USER_TUTORIAL, AUTHENTICATING_USER, SET_CURRENT_USER, FAILED_LOGIN, UPDATE_BIO, UPDATE_PROFILE_PHOTO } from './actionTypes';
 import { YoutubeAPIKey, cloudinaryUrl, cloudinaryUploadPreset, backendEndpoint } from '../../secretKeys';
 
-// fetch all resorts when ResortsPage loaded and add to redux store
+// fetch all resorts when ResortsPage is loaded and add them to the redux store
 export const addResorts = (resorts) => {
   return {
     type: ADD_RESORTS,
@@ -43,7 +43,7 @@ export const createEvent = (values, resortId, hostId, redirectCb) => {
   })
 }
 
-// fetch all events when EventsPage loaded and add to redux store
+// fetch all events when EventsPage is loaded and add to the redux store
 export const addEvents = (events) => {
   return {
     type: ADD_EVENTS,
@@ -59,7 +59,7 @@ export const fetchEvents = () => {
   }
 }
 
-// update event search term in redux store
+// update the event search term in the redux store
 export const updateSearch = (term) => {
   return {
     type: UPDATE_SEARCH,
@@ -67,7 +67,7 @@ export const updateSearch = (term) => {
   }
 }
 
-// update event sort type in redux store
+// update the event sort type in the redux store
 export const updateSort = (type) => {
   return {
     type: UPDATE_SORT,
@@ -75,7 +75,7 @@ export const updateSort = (type) => {
   }
 }
 
-// update current event in redux store when EventDetailPage loaded
+// update the current event in the redux store when EventDetailPage is loaded
 export const setCurrentEvent = (event) => {
   return {
     type: SET_CURRENT_EVENT,
@@ -83,7 +83,7 @@ export const setCurrentEvent = (event) => {
   }
 }
 
-// create user event join table instance in backend and add it to redux store when a user signup for / going to an event on EventDetailPage
+// create a user event join table instance in the backend and add it to the redux store when a user signup for an event on the EventDetailPage
 export const addUserEvent = (event, user) => {
     return dispatch => {
       fetch(`${backendEndpoint}/user_events`, {
@@ -101,14 +101,13 @@ export const addUserEvent = (event, user) => {
       })
       .then(response => response.json())
       .then(userEvent => {
-        console.log(userEvent)
         dispatch({type: ADD_USER_EVENT, payload: {userEvent, event, user}})
       })
 
     }
 }
 
-// delete user event join table instance in backend and remove it from redux store when a user choose not going for an event on EventDetailPage
+// delete the user event join table instance in the backend and remove it from the redux store when a user choose not going to an event on the EventDetailPage
 export const deleteUserEvent = (userEvent, event, user) => {
   return dispatch => {
     fetch(`${backendEndpoint}/user_events/${userEvent.id}`, {
@@ -117,13 +116,12 @@ export const deleteUserEvent = (userEvent, event, user) => {
     .then(response => response.json())
     .then(userEvent => {
       dispatch({type: DELETE_USER_EVENT, payload: {userEvent, event, user}})
-      console.log(userEvent)
     })
 
   }
 }
 
-// update comment like counts in backend on Comment component
+// update comment like counts in the backend on the Comment component
 export const updateLikes = (commentId, like_count) => {
   fetch(`${backendEndpoint}/comments/${commentId}`, {
     method: "PATCH",
@@ -140,7 +138,7 @@ export const updateLikes = (commentId, like_count) => {
 }
 
 
-// update tutorials to render in redux store based on search terms
+// update tutorials in the redux store based on search terms
 export const updateTutorialSelect = (searchTerm) => {
   const YoutubeEndPoint = `https://www.googleapis.com/youtube/v3/search?key=${YoutubeAPIKey}&q=${searchTerm}&maxResults=30&type=video&part=snippet&order=viewCount`
   // const endPoint = `https://www.googleapis.com/youtube/v3/videos?id=V9xuy-rVj9w&key=${YOUTUBE_API_KEY}&part=snippet,contentDetails,statistics,status`
@@ -152,7 +150,7 @@ export const updateTutorialSelect = (searchTerm) => {
   }
 }
 
-// create a new tutorial in backend and use the newly created tutorial id and user id to create user tutorial join table instance in backend also add tutorial in redux store from user reducer
+// create a new tutorial in the backend and use the newly created tutorial id and user id to create a user tutorial join table instance in the backend also add this tutorial in the redux store from the user reducer
 export const saveTutorial = (videoId, userId) => {
   return (dispatch) => {
       fetch(`${backendEndpoint}/tutorials`, {
@@ -191,7 +189,7 @@ export const saveTutorial = (videoId, userId) => {
     }
 }
 
-// send user login info to backend to authenticate user, if success set jwt to localStorage
+// send the user login infomation to the backend to authenticate user, if successfully logged in, save jwt to the localStorage
 export const loginUser = (username, password) => {
   return (dispatch) => {
     dispatch({ type: AUTHENTICATING_USER })
@@ -227,7 +225,7 @@ export const loginUser = (username, password) => {
   }
 }
 
-// use user signup infomation to create a new user, if success log user in and set jwt to localStorage
+// use the user signup infomation to create a new user in the backend, if successfully signed up, log user in and save jwt to the localStorage
 export const signupUser = (username, password) => {
   return (dispatch) => {
     dispatch({ type: AUTHENTICATING_USER })
@@ -263,7 +261,7 @@ export const signupUser = (username, password) => {
   }
 }
 
-// if user refresh the page, redux store lost the current user infomation, check jwt in localStorage and backend, if success have user automatically log in
+// when page is refreshed, the redux store will lose the current user infomation. Check jwt in the backend, if it's an authenticated user, have user automatically logged in.
 export const fetchCurrentUser = () => {
   return dispatch => {
     dispatch({ type: AUTHENTICATING_USER })
@@ -279,7 +277,7 @@ export const fetchCurrentUser = () => {
   }
 }
 
-// update user profile avatar in backend and redux store, ProfilePage
+// update user profile avatar in the backend and the redux store, ProfilePage
 export const updateBackendProfile = (userId, avatarUrl) => {
   fetch(`${backendEndpoint}/users/${userId}`, {
     method: "PATCH",
@@ -313,7 +311,7 @@ export const updateProfilePhoto = (userId, file) => {
   }
 }
 
-// update user profile bio in backend and redux store, ProfilePage
+// update user profile bio in the backend and the redux store, ProfilePage
 export const addBio = (userId, bio) => {
   return dispatch => {
     fetch(`${backendEndpoint}/users/${userId}`, {
